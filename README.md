@@ -1,2 +1,2 @@
 # Voyage-Diary
-Voyage Diary ist ein social media Plattform für Nomaden (Unser Benuzer) um über ihre Reisen zu berichten können.
+Voyage Diary ist eine social media Plattform für Nomaden (Unser Benuzer), in dem sie über ihre Reisen berichten können.
