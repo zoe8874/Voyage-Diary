@@ -2,7 +2,7 @@
 export default {
   methods: {
     navigateTobeitragView() {
-      this.$router.push('/beitrag')  // oder welchen Pfad du brauchst
+      this.$router.push('/beitrag')
     }
   }
 }
