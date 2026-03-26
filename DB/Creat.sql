@@ -1,27 +1,49 @@
-Create database VoyageDiary;
+CREATE DATABASE VoyageDiary;
 
-use VoyageDiary;
 
-Create table [User] (
-User_ID int  PRIMARY KEY,
-Usernmae varchar(25),
-Vorname varchar(25),
-Nachname varchar(25),
-Email varchar(25),
-Passwort varchar(65),
+USE VoyageDiary;
+
+
+CREATE TABLE Tag (
+    Tag_ID INT PRIMARY KEY IDENTITY(1,1),
+    Tag_Name VARCHAR(50) NOT NULL
 );
 
-Create Table Beitrag (
-Beitrag_ID int Primary key,
-Test varchar(999),
-Bildverweiss varchar(999),
-
-
+CREATE TABLE Users (
+    User_ID INT PRIMARY KEY IDENTITY(1,1),
+    Username VARCHAR(25) NOT NULL UNIQUE,
+    Vorname VARCHAR(25),
+    Nachname VARCHAR(25),
+    Email VARCHAR(50) NOT NULL UNIQUE,
+    Passwort VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE Beitrag (
+    Beitrag_ID INT PRIMARY KEY IDENTITY(1,1),
+    Text VARCHAR(MAX),
+    Bildverweis VARCHAR(500),
+    Likes INT DEFAULT 0,
+    User_ID INT NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE(),
 
-Create table kommentar(
-kommentar_ID int Primary key,
-kommentar_text varchar(999),
+    FOREIGN KEY (User_ID) REFERENCES Users(User_ID) ON DELETE CASCADE
+);
 
+CREATE TABLE Beitrag_Tag (
+    Beitrag_ID INT NOT NULL,
+    Tag_ID INT NOT NULL,
+    PRIMARY KEY (Beitrag_ID, Tag_ID),
+    FOREIGN KEY (Beitrag_ID) REFERENCES Beitrag(Beitrag_ID) ON DELETE CASCADE,
+    FOREIGN KEY (Tag_ID) REFERENCES Tag(Tag_ID) ON DELETE CASCADE
+);
+
+CREATE TABLE Kommentar (
+    Kommentar_ID INT PRIMARY KEY IDENTITY(1,1),
+    Kommentar_Text VARCHAR(MAX),
+    User_ID INT NOT NULL,
+    Beitrag_ID INT NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE(),
+
+    FOREIGN KEY (User_ID) REFERENCES Users(User_ID) ON DELETE CASCADE,
+    FOREIGN KEY (Beitrag_ID) REFERENCES Beitrag(Beitrag_ID) ON DELETE CASCADE
 );
