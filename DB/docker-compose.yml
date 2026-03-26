@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: VoyageDiary-123
+      DB_NAME: mydb
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: VoyageDiary-123
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3306:3306"
