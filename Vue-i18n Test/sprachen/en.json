@@ -1,4 +1,9 @@
 {
-  "login": "Login",
-  "welcome": "Welcome to VoyageDiary!"
+  "login": "Sign In",
+  "welcome": "Welcome to VoyageDiary!",
+  "subtitle": "Your digital travel diary – for every trip, every moment.",
+  "getStarted": "Get Started",
+  "createAccount": "Create Account",
+  "alreadyHaveAccount": "Already have an account?",
+  "signInHere": "Sign in here"
 }

@@ -1,4 +1,9 @@
 {
   "login": "Anmelden",
-  "welcome": "Willkommen bei VoyageDiary!"
+  "welcome": "Willkommen bei VoyageDiary!",
+  "subtitle": "Dein digitales Reisetagebuch – für jede Reise, jeden Moment.",
+  "getStarted": "Loslegen",
+  "createAccount": "Konto erstellen",
+  "alreadyHaveAccount": "Bereits Konto?",
+  "signInHere": "Hier anmelden"
 }
