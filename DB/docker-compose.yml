@@ -1,0 +1,30 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+      SA_PASSWORD: "Voyage2024"
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./data:/var/opt/mssql/data
+
+  backend:
+    image: node:16
+    container_name: backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 1433
+      DB_USER: sa
+      DB_PASSWORD: Voyage2024
+      DB_NAME: VoyageDiary
