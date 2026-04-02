@@ -10,13 +10,13 @@
 
 
   <div id="sprachen">
-    <h1>{{ $t('welcome') }}</h1>
+    <p>sprachen(nicht mitkopieren, p zu h1)</p>
 
-    <button @click="changesprache('en')">{{ $t('sprache') }} (EN)</button>
-    <button @click="changesprache('de')">{{ $t('sprache') }} (DE)</button>
-    <button @click="changesprache('es')">{{ $t('sprache') }} (ES)</button>
-    <button @click="changesprache('fr')">{{ $t('sprache') }} (FR)</button>
-    <button @click="changesprache('it')">{{ $t('sprache') }} (IT)</button>
+    <button @click="changesprache('en')">(EN)</button>
+    <button @click="changesprache('de')">DE)</button>
+    <button @click="changesprache('es')">(ES)</button>
+    <button @click="changesprache('fr')">(FR)</button>
+    <button @click="changesprache('it')">(IT)</button>
 
 
   </div>
@@ -88,8 +88,30 @@
   align-content: center;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 50%;
+  background-color: blue;
 }
 
+#upper-banner{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
 
+#upper-banner{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#upper-banner{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
 
 </style>
