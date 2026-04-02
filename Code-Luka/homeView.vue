@@ -9,7 +9,17 @@
   <body>
 
 
-  <button @click="navigateToLoginView">Sign Up</button>
+  <div id="sprachen">
+    <h1>{{ $t('welcome') }}</h1>
+
+    <button @click="changesprache('en')">{{ $t('sprache') }} (EN)</button>
+    <button @click="changesprache('de')">{{ $t('sprache') }} (DE)</button>
+    <button @click="changesprache('es')">{{ $t('sprache') }} (ES)</button>
+    <button @click="changesprache('fr')">{{ $t('sprache') }} (FR)</button>
+    <button @click="changesprache('it')">{{ $t('sprache') }} (IT)</button>
+
+
+  </div>
 
   <div id="upper-banner">
     <div id="Background-upper-banner">
@@ -72,5 +82,14 @@
   margin: 4px 2px;
   border-radius: 15px;
 }
+
+#upper-banner{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
 </style>
