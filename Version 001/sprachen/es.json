@@ -1,0 +1,21 @@
+{
+  "login": "Iniciar sesión",
+  "welcome": "¡Bienvenido a VoyageDiary!",
+  "subtitle": "Tu diario de viaje digital – para cada viaje, cada momento.",
+  "getStarted": "Comenzar",
+  "createAccount": "Crear cuenta",
+  "alreadyHaveAccount": "¿Ya tienes cuenta?",
+  "signInHere": "Inicia sesión aquí",
+  "register": "Registrarse",
+  "pleaseRegister": "Por favor, complete este formulario para crear una cuenta.",
+  "username": "Nombre de usuario",
+  "enterUsername": "Ingrese el nombre de usuario",
+  "email": "Correo electrónico",
+  "enterEmail": "Ingrese el correo electrónico",
+  "password": "Contraseña",
+  "enterPassword": "Ingrese la contraseña",
+  "repeatPassword": "Repetir contraseña",
+  "repeatPasswordPlaceholder": "Repetir contraseña",
+  "registerBtn": "Registrarse",
+  "alreadyHaveAccountQuestion": "¿Ya tienes una cuenta?"
+}
