@@ -1,4 +1,4 @@
-<script >
+7<script >
 
 import LanguageButtons from "@/components/languageButtons.vue";
 
