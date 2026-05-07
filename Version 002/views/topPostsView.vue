@@ -6,6 +6,7 @@ import NavigationBar from "@/components/navigationBar.vue";
 <template>
 
   <NavigationBar/>
+  
 
 </template>
 

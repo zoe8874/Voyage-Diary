@@ -16,7 +16,9 @@ CREATE TABLE Users (
     Vorname VARCHAR(25),
     Nachname VARCHAR(25),
     Email VARCHAR(50) NOT NULL UNIQUE,
-    Passwort VARCHAR(255) NOT NULL
+    Passwort VARCHAR(255) NOT NULL,
+    Abimination bit DEFAULT 0
+    aktiv bit DEFAULT 1
 );
 
 CREATE TABLE Beitrag (
