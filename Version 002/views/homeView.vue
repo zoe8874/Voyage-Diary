@@ -1,4 +1,4 @@
-7<script >
+<script >
 
 import LanguageButtons from "@/components/languageButtons.vue";
 
@@ -21,11 +21,12 @@ export default {
   <body>
 
 
-    <h1>{{ $t('welcome') }}</h1>
-    <h2> {{$t('subtitle')}}</h2>
+  <h1> {{$t('welcome') }}</h1>
+  <h2> {{$t('subtitle')}}</h2>
 
 
-    <languageButtons/>
+  <languageButtons/>
+
 
 
 
@@ -38,13 +39,38 @@ export default {
 
       </div>
       <div id="button-upper-banner">
+        <button id="join"> Join over 10'000 Nomads worldwide!</button>
+        <p id="upper-text"> Your Journey,<br> Their Inspiration </p>
+        <p id="lower-text"> voyage-diary is where nomads share authentic travel experiences, insider tips, and hidden gems from around the world.</p>
         <button id="start" @click="navigateToLoginView"> Start your Diary → </button>
         <button id="explore" @click="navigateToLoginView"> 🌐 Explore </button>
+
       </div>
     </div>
   </div>
 
   <div id="upper-lower-banner">
+
+    <p id="why"> Why Nomads Love Us</p>
+    <p id="more"> More than just a travel blog. It's a community of adventurers sharing real experiences.</p>
+
+    <div id="left-square">
+
+
+
+    </div>
+
+    <div id="center-square">
+
+
+
+    </div>
+
+    <div id="right-square">
+
+
+
+    </div>
 
   </div>
 
@@ -66,7 +92,42 @@ export default {
 
 </template>
 
-<style scoped>
+<style>
+
+#join{
+  background-color: white;
+  padding: 10px;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 15px;
+}
+
+#upper-text{
+  color: #b5acfe;
+  font-size: 24px;
+  text-align: center;
+  text-decoration: none;
+  text-decoration: none;
+  padding: 5px;
+  margin: 5px;
+  font-family: arial,serif;
+}
+
+#lower-text{
+  color: black;
+  font-size: 24px;
+  text-align: center;
+  text-decoration: none;
+  text-decoration: none;
+  padding: 5px;
+  margin: 5px;
+  font-family: arial,serif;
+}
 
 #start{
   background-color: #5959f7;
@@ -124,7 +185,5 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
-
 
 </style>
