@@ -38,4 +38,3 @@ import NavigationBar from "@/components/navigationBar.vue";
 <style scoped>
 
 </style>
- 
