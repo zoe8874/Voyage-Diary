@@ -27,10 +27,24 @@ export default {
 
 <div>
   <nav>
-      <button @click="navigateTotopPostsView">Top Commits</button>
-      <button @click="navigateTobrowseView">Browse</button>
-    <button @click="navigateTocreatePostView">Create Post</button>
-     <button @click="navigateToprofileView">profile</button>
+    <ul>
+      <li>
+        <button @click="navigateTotopPostsView">Top Commits</button>
+      </li>
+      <li>
+        <button @click="navigateTobrowseView">Browse</button>
+      </li>
+      <li>
+        <button @click="navigateTocreatePostView">Create Post</button>
+      </li>
+      <li>
+        <button @click="navigateToprofileView">profile</button>
+      </li>
+    </ul>
+
+
+
+
   </nav>
 </div>
 
@@ -39,5 +53,9 @@ export default {
 </template>
 
 <style scoped>
+
+
+
+
 
 </style>
