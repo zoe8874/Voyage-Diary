@@ -1,6 +1,18 @@
-<script>
+<script >
+
+import LanguageButtons from "@/components/languageButtons.vue";
 
 
+export default {
+  components: {LanguageButtons},
+  methods: {
+
+    navigateToLoginView() {
+      this.$router.push('/login')
+    }
+  }
+
+}
 
 </script>
 
@@ -9,17 +21,17 @@
   <body>
 
 
-  <div id="sprachen">
-    <p>sprachen(nicht mitkopieren, p zu h1)</p>
-
-    <button @click="changesprache('en')">(EN)</button>
-    <button @click="changesprache('de')">DE)</button>
-    <button @click="changesprache('es')">(ES)</button>
-    <button @click="changesprache('fr')">(FR)</button>
-    <button @click="changesprache('it')">(IT)</button>
+  <h1> {{$t('welcome') }}</h1>
+  <h2> {{$t('subtitle')}}</h2>
 
 
-  </div>
+  <languageButtons/>
+
+
+
+
+
+
 
   <div id="upper-banner">
     <div id="Background-upper-banner">
@@ -28,10 +40,10 @@
       </div>
       <div id="button-upper-banner">
         <button id="join"> Join over 10'000 Nomads worldwide!</button>
-        <p id="upper-text"> Your Journey, Their Inspiration </p>
+        <p id="upper-text"> Your Journey,<br> Their Inspiration </p>
         <p id="lower-text"> voyage-diary is where nomads share authentic travel experiences, insider tips, and hidden gems from around the world.</p>
-        <button id="start"> Start your Diary → </button>
-        <button id="explore"> 🌐 Explore </button>
+        <button id="start" @click="navigateToLoginView"> Start your Diary → </button>
+        <button id="explore" @click="navigateToLoginView"> 🌐 Explore </button>
 
       </div>
     </div>
@@ -44,7 +56,7 @@
 
     <div id="left-square">
 
-    
+
 
     </div>
 
@@ -80,7 +92,7 @@
 
 </template>
 
-<style scoped>
+<style>
 
 #join{
   background-color: white;
@@ -97,7 +109,7 @@
 
 #upper-text{
   color: #b5acfe;
-  font-size: 12px;
+  font-size: 24px;
   text-align: center;
   text-decoration: none;
   text-decoration: none;
@@ -108,7 +120,7 @@
 
 #lower-text{
   color: black;
-  font-size: 12px;
+  font-size: 24px;
   text-align: center;
   text-decoration: none;
   text-decoration: none;
