@@ -1,0 +1,21 @@
+{
+  "login": "Se connecter",
+  "welcome": "Bienvenue sur VoyageDiary !",
+  "subtitle": "Ton carnet de voyage numérique – pour chaque voyage, chaque moment.",
+  "getStarted": "Commencer",
+  "createAccount": "Créer un compte",
+  "alreadyHaveAccount": "Déjà un compte ?",
+  "signInHere": "Connectez-vous ici",
+  "register": "S'inscrire",
+  "pleaseRegister": "Veuillez remplir ce formulaire pour créer un compte.",
+  "username": "Nom d'utilisateur",
+  "enterUsername": "Entrez le nom d'utilisateur",
+  "email": "Email",
+  "enterEmail": "Entrez l'email",
+  "password": "Mot de passe",
+  "enterPassword": "Entrez le mot de passe",
+  "repeatPassword": "Répéter le mot de passe",
+  "repeatPasswordPlaceholder": "Répéter le mot de passe",
+  "registerBtn": "S'inscrire",
+  "alreadyHaveAccountQuestion": "Vous avez déjà un compte ?"
+}
