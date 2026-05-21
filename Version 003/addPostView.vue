@@ -1,8 +1,9 @@
 <script setup>
-
+import NavigationBar from "@/components/navigationBar.vue";
 </script>
 
 <template>
+  <NavigationBar/>
   <div class="page">
     <div class="container">
       <h1>{{ ('addPost') }}</h1>
@@ -165,7 +166,7 @@ textarea {
 .addPostbtn {
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, #5959f7, #b5acfe);
+  background: linear-gradient(135deg, #5C5CFF, #b5acfe);
   border: none;
   border-radius: 14px;
   color: white;
