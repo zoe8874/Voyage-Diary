@@ -61,6 +61,7 @@ export default {
 </script>
 
 <template>
+  <div>
   <NavigationBar/>
 
   <div class="page">
@@ -169,6 +170,7 @@ export default {
 
     </div>
   </div>
+  </div>
 </template>
 
 <style scoped>
@@ -178,7 +180,7 @@ export default {
 
 .page {
   min-height: 100vh;
-  background: #faf8f5;
+  background: #ffffff;
   font-family: 'DM Sans', sans-serif;
   color: #1a1a1a;
   padding: 32px 16px 80px;
