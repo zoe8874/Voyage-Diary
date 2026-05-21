@@ -37,5 +37,29 @@ export default {
 </template>
 
 <style scoped>
+#sprachen {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+#sprachen button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 10px;
+
+  background: #f3f3ff;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+  font-weight: 600;
+}
+
+#sprachen button:hover {
+  background: #e3e3ff;
+  transform: translateY(-2px);
+}
 
 </style>

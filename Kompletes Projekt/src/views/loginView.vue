@@ -53,8 +53,69 @@ export default {
 </template>
 
 <style>
-form {
-  padding: 20px;
-  margin: 60px;
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: linear-gradient(135deg, #f3e8ff, #ffffff);
+  padding: 30px;
+  gap: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+
+  background: white;
+  padding: 30px;
+
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input {
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #ddd;
+  outline: none;
+}
+
+input:focus {
+  border-color: #5c5cff;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button[type="submit"] {
+  background: #5c5cff;
+  color: white;
+}
+
+button[type="button"] {
+  background: #eee;
+}
+
+.error {
+  color: red;
 }
 </style>
