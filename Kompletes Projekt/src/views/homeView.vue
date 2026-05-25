@@ -13,9 +13,12 @@ export default {
 </script>
  
 <template>
+
+
 <div class="home-view">
- 
-    <!-- Hero/Header -->
+  <languageButtons />
+
+  <!-- Hero/Header -->
 <section class="hero">
 <div class="hero-content">
  
@@ -28,7 +31,7 @@ export default {
           Discover inspiring travel stories from nomads around the world.
 </p>
  
-        <languageButtons />
+
  
       </div>
 </section>
