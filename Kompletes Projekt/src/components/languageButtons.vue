@@ -29,6 +29,7 @@ export default {
     <button @click="changesprache('es')">{{ $t('sprache') }} (ES)</button>
     <button @click="changesprache('fr')">{{ $t('sprache') }} (FR)</button>
     <button @click="changesprache('it')">{{ $t('sprache') }} (IT)</button>
+    
 
 
   </div>

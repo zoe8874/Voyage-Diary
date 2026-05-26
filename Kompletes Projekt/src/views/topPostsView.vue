@@ -59,6 +59,7 @@ export default {
       return post.likes[0]?.count || 0
     }
   }
+
 }
 </script>
 
@@ -112,7 +113,7 @@ export default {
           </div>
 
           <div class="footer">
-            <span>❤️ {{ getLikeCount(post) }}</span>
+            <span>♡ {{ getLikeCount(post) }}</span>
             <span>{{ formatDate(post.created_at) }}</span>
           </div>
         </div>
@@ -135,7 +136,7 @@ export default {
   color: #1e293b;
 }
 
-/* HEADER */
+
 
 .header {
   text-align: center;

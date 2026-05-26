@@ -53,7 +53,7 @@ export default {
 
 
 
-
+<div class="page">
   <form @submit.prevent="register">
     <div class="container">
       <h1>{{ $t('register') }}</h1>
@@ -86,4 +86,5 @@ export default {
 
     <LanguageButtons/>
   </form>
+  </div>
 </template>

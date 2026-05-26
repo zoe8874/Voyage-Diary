@@ -1,9 +1,12 @@
 <script setup>
 
 import LanguageButtons from "@/components/languageButtons.vue";
+import NavigationBar from "@/components/navigationBar.vue";
 </script>
 
 <template>
+  <div>
+    <NavigationBar/>
 
   <body>
 
@@ -15,7 +18,7 @@ import LanguageButtons from "@/components/languageButtons.vue";
   </body>
 
   <languageButtons/>
-
+  </div>
 </template>
 
 <style scoped>

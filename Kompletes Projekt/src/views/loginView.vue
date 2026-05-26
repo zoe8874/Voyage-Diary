@@ -35,9 +35,12 @@ export default {
 </script>
 
 <template>
-  <router-view />
-  <div>
+  
+  <div class="page">
+    <div class="container">
+      
     <h2>Login</h2>
+
     <form @submit.prevent="login">
       <input v-model="email" type="text" placeholder="E-Mail" required/>
       <input v-model="password" type="password" placeholder="Passwort" required/>
@@ -46,22 +49,21 @@ export default {
 
       <button type="submit">Anmelden</button>
       <button type="button" @click="navigateToRegistrationView">Registrieren</button>
+
     </form>
+    </div>
   </div>
 
   <LanguageButtons/>
 </template>
 
 <style>
-.page {
-  min-height: 100vh;
+
+
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-
-  background: linear-gradient(135deg, #f3e8ff, #ffffff);
-  padding: 30px;
-  gap: 20px;
+  gap: 15px;
 }
 
 .card {

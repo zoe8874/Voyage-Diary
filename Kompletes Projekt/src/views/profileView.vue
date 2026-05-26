@@ -236,7 +236,7 @@ export default {
   border-radius: 50%;
   background: linear-gradient(135deg, #7376ff, #7376ff);
   color: white;
-  font-family: 'Playfair Display', serif;
+
   font-size: 36px;
   display: flex;
   align-items: center;
@@ -254,7 +254,7 @@ export default {
 }
 
 .name-row h1 {
-  font-family: 'Playfair Display', serif;
+ 
   font-size: 24px;
   color: #1a1a1a;
 }
@@ -265,7 +265,7 @@ export default {
   color: #7376ff;
   padding: 6px 16px;
   border-radius: 20px;
-  font-family: 'DM Sans', sans-serif;
+ 
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -317,7 +317,7 @@ export default {
 
 .stat-box strong {
   display: block;
-  font-family: 'Playfair Display', serif;
+  
   font-size: 26px;
   color: #7376ff;
   margin-bottom: 4px;
@@ -342,7 +342,7 @@ export default {
   border-radius: 12px;
   border: 1.5px solid #e8e0d5;
   background: white;
-  font-family: 'DM Sans', sans-serif;
+
   font-size: 14px;
   font-weight: 500;
   color: #888;
