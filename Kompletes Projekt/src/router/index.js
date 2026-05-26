@@ -6,6 +6,7 @@ import AddPostView from '@/views/addPostView.vue';
 import ProfileView from "@/views/profileView.vue";
 import browseView from "@/views/browseView.vue";
 import RegistrationView from "@/views/registrationView.vue";
+import editProfileView from "@/views/editProfileView.vue";
 
 
 const routes = [
@@ -48,6 +49,11 @@ const routes = [
         path: '/registration',
         name: 'registration',
         component: RegistrationView
+    },
+    {
+        path: '/editProfile',
+        name: 'editProfile',
+        component: editProfileView
     }
 
 
