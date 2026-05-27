@@ -3,7 +3,8 @@ import supabase from "@/supabase";
 import NavigationBar from "@/components/navigationBar.vue";
 
 export default {
-  components: {NavigationBar},
+  components: { NavigationBar },
+
   data() {
     return {
       posts: [],
@@ -12,11 +13,15 @@ export default {
       error: null
     }
   },
+
   async mounted() {
     await this.loadPosts()
   },
+
   methods: {
+
     async loadPosts() {
+
       const { data, error } = await supabase
           .from('posts')
           .select(`
@@ -32,7 +37,9 @@ export default {
               display_name,
               avatar_url
             ),
-            likes (count)
+            likes (
+              count
+            )
           `)
           .order('created_at', { ascending: false })
 
@@ -45,88 +52,168 @@ export default {
         return
       }
 
+      // Nach Likes sortieren und nur Top 10 anzeigen
       this.posts = data
-      this.totalLikes = data.reduce((sum, post) => sum + (post.likes[0]?.count || 0), 0)
+          .sort((a, b) => {
+            const likesA = a.likes?.length || 0
+            const likesB = b.likes?.length || 0
+
+            return likesB - likesA
+          })
+          .slice(0, 10)
+
+      // Total Likes berechnen
+      this.totalLikes = this.posts.reduce(
+          (sum, post) => sum + (post.likes?.length || 0),
+          0
+      )
+
       this.loading = false
     },
 
     formatDate(dateStr) {
       const date = new Date(dateStr)
-      return date.toLocaleDateString('de-CH', { day: 'numeric', month: 'short' })
+
+      return date.toLocaleDateString('de-CH', {
+        day: 'numeric',
+        month: 'short'
+      })
     },
 
     getLikeCount(post) {
-      return post.likes[0]?.count || 0
+      return post.likes?.length || 0
     }
   }
-
 }
 </script>
 
 <template>
+
   <div>
 
-  <NavigationBar/>
+    <NavigationBar />
 
-  <div class="top-posts">
+    <div class="top-posts">
 
-    <div class="header">
-      <p>Trending Now</p>
-      <h1>Top Posts This Week</h1>
-      <p>Discover the most loved stories from our community of nomads.</p>
+      <div class="header">
 
-      <div class="stats">
-        <div>
-          <strong>{{ totalLikes }}</strong>
-          <span>Total Likes</span>
+        <p>Trending Now</p>
+
+        <h1>Top Posts This Week</h1>
+
+        <p>
+          Discover the most loved stories from our community of nomads.
+        </p>
+
+        <div class="stats">
+
+          <div>
+            <strong>{{ totalLikes }}</strong>
+            <span>Total Likes</span>
+          </div>
+
+          <div>
+            <strong>{{ posts.length }}</strong>
+            <span>Top Stories</span>
+          </div>
+
         </div>
-        <div>
-          <strong>{{ posts.length }}</strong>
-          <span>Top Stories</span>
-        </div>
+
       </div>
-    </div>
 
-    <div v-if="loading">Loading...</div>
+      <div v-if="loading">
+        Loading...
+      </div>
 
-    <div v-else>
-      <div v-for="(post, index) in posts" :key="post.post_id" class="post-card">
+      <div v-else>
 
-        <span class="rank">{{ index + 1 }}</span>
+        <div class="grid">
 
-        <img v-if="post.image_url" :src="post.image_url" :alt="post.content" class="post-image"/>
+          <div
+              v-for="(post, index) in posts"
+              :key="post.post_id"
+              class="post-card"
+          >
 
-        <div class="post-info">
-          <div class="author">
-            <img v-if="post.users?.avatar_url" :src="post.users.avatar_url" class="avatar"/>
-            <div>
-              <strong>{{ post.users?.display_name }}</strong>
-              <span>@{{ post.users?.username }}</span>
+            <span class="rank">
+              {{ index + 1 }}
+            </span>
+
+            <img
+                v-if="post.image_url"
+                :src="post.image_url"
+                :alt="post.content"
+                class="post-image"
+            />
+
+            <div class="post-info">
+
+              <div class="author">
+
+                <img
+                    v-if="post.users?.avatar_url"
+                    :src="post.users.avatar_url"
+                    class="avatar"
+                />
+
+                <div>
+                  <strong>{{ post.users?.display_name }}</strong>
+                  <span>@{{ post.users?.username }}</span>
+                </div>
+
+                <span class="language">
+                  {{ post.language }}
+                </span>
+
+              </div>
+
+              <p class="content">
+                {{ post.content }}
+              </p>
+
+              <div class="location" v-if="post.location">
+                📍 {{ post.location }}, {{ post.country }}
+              </div>
+
+              <div class="footer">
+
+                <span>
+                  ♡ {{ getLikeCount(post) }}
+                </span>
+
+                <span>
+                  {{ formatDate(post.created_at) }}
+                </span>
+
+              </div>
+
             </div>
-            <span class="language">{{ post.language }}</span>
+
           </div>
 
-          <p class="content">{{ post.content }}</p>
-
-          <div class="location" v-if="post.location">
-            📍 {{ post.location }}, {{ post.country }}
-          </div>
-
-          <div class="footer">
-            <span>♡ {{ getLikeCount(post) }}</span>
-            <span>{{ formatDate(post.created_at) }}</span>
-          </div>
         </div>
 
       </div>
+
     </div>
 
   </div>
-  </div>
-</template>
 
+</template>
 <style scoped>
 
+@media (min-width: 850px) {
+
+  .grid {
+    grid-template-columns: auto;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+}
 
 .top-posts {
   max-width: 1100px;
@@ -135,8 +222,6 @@ export default {
   font-family: 'Inter', sans-serif;
   color: #1e293b;
 }
-
-
 
 .header {
   text-align: center;
@@ -165,8 +250,6 @@ export default {
   margin: 0 auto;
 }
 
-/* STATS */
-
 .stats {
   display: flex;
   justify-content: center;
@@ -193,8 +276,6 @@ export default {
   font-size: 0.9rem;
 }
 
-/* POST CARD */
-
 .post-card {
   position: relative;
   display: flex;
@@ -211,8 +292,6 @@ export default {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0,0,0,0.12);
 }
-
-/* RANK */
 
 .rank {
   position: absolute;
@@ -232,16 +311,12 @@ export default {
   box-shadow: 0 4px 12px rgba(99,102,241,0.4);
 }
 
-/* IMAGE */
-
 .post-image {
   width: 320px;
   height: 260px;
   object-fit: cover;
   flex-shrink: 0;
 }
-
-/* CONTENT */
 
 .post-info {
   flex: 1;
@@ -250,8 +325,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-
-/* AUTHOR */
 
 .author {
   display: flex;
@@ -289,8 +362,6 @@ export default {
   font-weight: 600;
 }
 
-/* TEXT */
-
 .content {
   font-size: 1.05rem;
   line-height: 1.7;
@@ -298,15 +369,11 @@ export default {
   margin-bottom: 18px;
 }
 
-/* LOCATION */
-
 .location {
   color: #475569;
   font-size: 0.95rem;
   margin-bottom: 20px;
 }
-
-/* FOOTER */
 
 .footer {
   display: flex;
@@ -318,15 +385,11 @@ export default {
   padding-top: 16px;
 }
 
-/* LOADING */
-
 .top-posts > div[v-if] {
   text-align: center;
   padding: 50px;
   font-size: 1.1rem;
 }
-
-/* RESPONSIVE */
 
 @media (max-width: 850px) {
 
@@ -382,4 +445,3 @@ export default {
 }
 
 </style>
-
