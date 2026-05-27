@@ -35,6 +35,8 @@ export default {
 </script>
 
 <template>
+
+  <languageButtons />
   
   <div class="page">
     <div class="container">

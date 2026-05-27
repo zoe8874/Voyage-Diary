@@ -18,7 +18,7 @@ export default {
 <div class="home-view">
   <languageButtons />
 
-  <!-- Hero/Header -->
+
 <section class="hero">
 <div class="hero-content">
  
