@@ -18,6 +18,10 @@ export default {
       this.$i18n.locale = sprache
       localStorage.setItem('sprache', sprache)
       this.menuOpen = false
+    },
+
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen
     }
   }
 }
@@ -27,27 +31,41 @@ export default {
   <div id="sprachen">
 
 
-    <button @click="changesprache('en')">{{ $t('sprache') }} (EN)</button>
-    <button @click="changesprache('de')">{{ $t('sprache') }} (DE)</button>
-    <button @click="changesprache('es')">{{ $t('sprache') }} (ES)</button>
-    <button @click="changesprache('fr')">{{ $t('sprache') }} (FR)</button>
-    <button @click="changesprache('it')">{{ $t('sprache') }} (IT)</button>
+    <button class="burger" @click="toggleMenu">
+      {{ $t('|||') }}
+    </button>
 
+    <div v-if="menuOpen" class="dropdown">
+      <button @click="changesprache('en')">English (EN)</button>
+      <button @click="changesprache('de')">Deutsch (DE)</button>
+      <button @click="changesprache('es')">Español (ES)</button>
+      <button @click="changesprache('fr')">Français (FR)</button>
+      <button @click="changesprache('it')">Italiano (IT)</button>
+    </div>
 
   </div>
+
 </template>
 
 <style scoped>
+
 #sprachen {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 15px;
+  z-index: 1000;
 }
 
 .burger {
-  font-size: 24px;
-  padding: 10px 14px;
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
   border: none;
   border-radius: 10px;
   background: #f3f3ff;
@@ -59,11 +77,11 @@ export default {
   background: #e3e3ff;
 }
 
-/* Dropdown Menu */
+
 .dropdown {
   position: absolute;
-  top: 55px;
-  right: 10px;
+  top: 65px;
+  right: 0;
 
   display: flex;
   flex-direction: column;
@@ -72,26 +90,7 @@ export default {
   background: white;
   padding: 12px;
   border-radius: 12px;
-
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
   z-index: 100;
-}
-
-.dropdown button {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 10px;
-
-  background: #f3f3ff;
-  cursor: pointer;
-
-  transition: 0.2s ease;
-  font-weight: 600;
-  text-align: left;
-}
-
-.dropdown button:hover {
-  background: #e3e3ff;
-  transform: translateX(3px);
 }
 </style>
