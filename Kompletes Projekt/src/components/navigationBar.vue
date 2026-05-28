@@ -51,27 +51,19 @@ export default {
         <p>Profile</p>
       </button>
 
-      <hr style="height: 34px; border: none; border-left: 2px solid rgba(0, 0, 0, 0.2);"  >
-      <button @click="toggleDarkMode">
-        <p>{{ darkMode ? ' Light' : ' Dark' }}</p>
-      </button>
+    
     </nav>
   </div>
 </template>
 
 <style scoped>
-Logo {
-  size: 40%;
-}
-
-
 nav {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 
-  padding: 1rem ;
+  padding: 1rem;
   margin: 1rem auto;
 
   width: 100%;
@@ -80,7 +72,6 @@ nav {
   backdrop-filter: blur(10px);
 
   border: 1px solid rgba(255, 255, 255, 0.3);
-  
 
   box-shadow:
     0 4px 20px rgba(0, 0, 0, 0.08),
@@ -91,18 +82,17 @@ nav {
 
 img.Logo {
   width: 15%;
- ;
 }
 
 nav button {
   background: transparent;
   border: none;
 
-  padding: 0.8rem 1.4rem auto;
+  padding: 0.8rem 1.4rem;
   border-radius: 14px;
 
-  font-size: auto;
-  font-weight: 60;
+  font-size: 1rem;
+  font-weight: 600;
 
   color: #2d2d2d;
 
@@ -129,23 +119,19 @@ nav p {
   margin: 0;
 }
 
+@media (prefers-color-scheme: dark) {
+  nav {
+    background: rgba(30, 30, 30, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      0 1px 3px rgba(0, 0, 0, 0.3);
+  }
 
-nav.dark {
-  background: rgba(30, 30, 30, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.4),
-    0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-nav.dark button {
-  color: #f5f5f5;
-}
-
-nav.dark button:hover {
-  background-color: #333;
-  color: #9d8cff;
+  nav button:hover {
+    background-color: #333;
+    color: #9d8cff;
+  }
 }
 </style>

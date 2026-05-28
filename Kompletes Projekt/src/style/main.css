@@ -7,16 +7,67 @@
 main{
     flex:1;
 }
-@media (prefers-color-scheme: dark){
-     html, body{
-     background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial;
+@media (prefers-color-scheme: dark) {
+  div {
+    background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+  }
+  html, body {
+    background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+    color: #e0e0e0;
+  }
+
+  .page {
+    background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+  }
+
+  .container {
+    background: rgba(40, 40, 40, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  }
+
+  h1 {
+    color: #a99bff;
+  }
+
+  p,
+  label {
+    color: #e0e0e0;
+  }
+
+  input,
+  textarea {
+    background: #2f2f2f;
+    color: white;
+    border: 2px solid #555;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #aaa;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: #a99bff;
+    box-shadow: 0 0 0 4px rgba(169, 155, 255, 0.2);
+  }
+
+  input[type="file"] {
+    background: #2f2f2f;
+    color: white;
+  }
+
+  .addPostbtn {
+    background: linear-gradient(135deg, #7c6cff, #5c5cff);
+  }
+
+  .addPostbtn:hover {
+    box-shadow: 0 12px 25px rgba(124, 108, 255, 0.35);
+  }
 }
 
-}
+
 
 html, body{
      background: linear-gradient(135deg, #f3e8ff, #ffffff);

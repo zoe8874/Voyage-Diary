@@ -120,4 +120,49 @@ button[type="button"] {
 .error {
   color: red;
 }
+@media (prefers-color-scheme: dark) {
+
+  .page {
+    background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+  }
+
+  .container {
+    background: rgba(30, 30, 30, 0.92);
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  h2 {
+    color: #cfcfff;
+  }
+
+  input {
+    background: #1f1f1f;
+    color: white;
+    border: 2px solid #444;
+  }
+
+  input:focus {
+    border-color: #7c6cff;
+  }
+
+  button[type="button"] {
+    background: #3a3a3a;
+    color: white;
+  }
+
+  button[type="submit"] {
+    background: #7c6cff;
+    color: white;
+  }
+
+  button {
+    color: white;
+  }
+
+  .error {
+    color: #ff6b6b;
+  }
+}
 </style>

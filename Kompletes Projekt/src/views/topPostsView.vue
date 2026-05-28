@@ -202,18 +202,7 @@ export default {
 </template>
 <style scoped>
 
-@media (min-width: 850px) {
 
-  .grid {
-    grid-template-columns: auto;
-  }
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: auto auto;
-  padding: 10px;
-}
 
 .top-posts {
   max-width: 1100px;
@@ -443,5 +432,85 @@ export default {
     width: 100%;
   }
 }
+@media (prefers-color-scheme: dark) {
 
+  .top-posts {
+    background: transparent;
+    color: #e5e7eb;
+  }
+
+  .header p:first-child {
+    color: #a99bff;
+  }
+
+  .header h1 {
+    color: #f1f5f9;
+  }
+
+  .header p:last-of-type {
+    color: #94a3b8;
+  }
+
+  .stats div {
+    background: #1a1a1a;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  }
+
+  .stats strong {
+    color: #f8fafc;
+  }
+
+  .stats span {
+    color: #94a3b8;
+  }
+
+  .post-card {
+    background: #1b1b1b;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+  }
+
+  .post-card:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.85);
+  }
+
+  .rank {
+    background: #7c6cff;
+  }
+
+  .author strong {
+    color: #f1f5f9;
+  }
+
+  .author span {
+    color: #94a3b8;
+  }
+
+  .language {
+    background: #2a2a2a;
+    color: #c7d2fe !important;
+  }
+
+  .content {
+    color: #d1d5db;
+  }
+
+  .location {
+    color: #9ca3af;
+  }
+
+  .footer {
+    color: #9ca3af;
+    border-top: 1px solid #333;
+  }
+
+  .avatar {
+    border: 3px solid #2a2a2a;
+  }
+
+ 
+  .top-posts > div[v-if] {
+    color: #cbd5e1;
+  }
+}
 </style>
