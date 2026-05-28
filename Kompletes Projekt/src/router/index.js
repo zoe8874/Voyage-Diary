@@ -51,7 +51,7 @@ const routes = [
         component: RegistrationView
     },
     {
-        path: '/editProfile',
+        path: '/editProfileView',
         name: 'editProfile',
         component: editProfileView
     }

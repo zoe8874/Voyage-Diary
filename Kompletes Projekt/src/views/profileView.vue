@@ -82,7 +82,7 @@ export default {
         <div class="profile-info">
           <div class="name-row">
             <h1>{{ profile?.display_name || profile?.username }}</h1>
-            <button class="edit-btn" @click="$router.push('/editProfileView.vue')">Edit Profile</button>
+            <button class="edit-btn" @click="$router.push('./editProfileView')">Edit Profile</button>
           </div>
           <p class="handle">@{{ profile?.username }}</p>
           <p v-if="profile?.bio" class="bio">{{ profile.bio }}</p>
