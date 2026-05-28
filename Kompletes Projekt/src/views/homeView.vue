@@ -89,7 +89,7 @@ export default {
       </div>
 </section>
  
-    <!-- CTA -->
+   
 <section class="cta-section">
  
       <h2>Your Journey, Their Inspiration</h2>
@@ -124,8 +124,7 @@ export default {
   font-family: Arial, sans-serif;
 }
  
-/* HERO */
- 
+
 .hero {
   background: linear-gradient(135deg, #E5E3FF, #ffffff);
   color: white;
@@ -156,7 +155,6 @@ export default {
   margin: auto;
 }
  
-/* Badge */
  
 .trending-badge {
   display: inline-block;
@@ -168,7 +166,7 @@ export default {
   margin-bottom: 25px;
 }
  
-/* Stats */
+
  
 .stats-wrapper {
   margin-top: -40px;
@@ -200,7 +198,7 @@ export default {
   color: #777;
 }
  
-/* Section */
+
  
 .content-section {
   padding: 80px 20px;
@@ -222,7 +220,7 @@ export default {
   margin: auto;
 }
  
-/* Cards */
+
  
 .card-grid {
   display: grid;
@@ -248,7 +246,7 @@ export default {
   margin-bottom: 10px;
 }
  
-/* CTA */
+
  
 .cta-section {
   max-width: 900px;
@@ -302,12 +300,118 @@ export default {
   box-shadow: 0 8px 18px rgba(0,0,0,0.1);
 }
  
-/* Footer */
+
  
 footer {
   text-align: center;
   padding: 30px;
   color: #777;
+}
+
+@media (prefers-color-scheme: dark) {
+  div.home-view {
+    background: transparent;
+  }
+
+  .home-view {
+    background: linear-gradient(to bottom, #0f172a, #111827);
+    color: #f1f5f9;
+  }
+
+
+
+  .hero {
+    background: linear-gradient(135deg, #1e1b4b, #111827);
+  }
+
+  .hero h1 {
+    color: #ffffff;
+  }
+
+  .hero h2 {
+    color: #c7d2fe;
+  }
+
+  .hero-text {
+    color: #cbd5e1;
+  }
+
+
+  .stats-card {
+    background: #1e1e1e;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .stat h3 {
+    color: #a99bff;
+  }
+
+  .stat p {
+    color: #94a3b8;
+  }
+
+
+
+  .section-title h2 {
+    color: #f8fafc;
+  }
+
+  .section-title p {
+    color: #94a3b8;
+  }
+
+
+
+  .info-card {
+    background: #1e1e1e;
+    color: #f1f5f9;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .info-card p {
+    color: #cbd5e1;
+  }
+
+  .info-card:hover {
+    box-shadow: 0 12px 28px rgba(0,0,0,0.75);
+  }
+
+
+  .cta-section {
+    background: linear-gradient(135deg, #1e1b4b, #27272a);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .cta-section h2 {
+    color: white;
+  }
+
+  .cta-section p {
+    color: #cbd5e1;
+  }
+
+  .primary-btn {
+    background: #7c6cff;
+    color: white;
+  }
+
+  .secondary-btn {
+    background: #2a2a2a;
+    color: #dbe4ff;
+  }
+
+  .primary-btn:hover,
+  .secondary-btn:hover {
+    box-shadow: 0 8px 18px rgba(0,0,0,0.45);
+  }
+
+
+
+  footer {
+    color: #94a3b8;
+  }
 }
  
 </style>
