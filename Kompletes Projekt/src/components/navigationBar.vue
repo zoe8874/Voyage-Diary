@@ -36,7 +36,7 @@ export default {
       <img src="../assets/Bild (1).png" alt="Logo" class="Logo"/>
 
       <button @click="navigateTotopPostsView">
-        <p>Top Commits</p>
+        <p>Top Posts</p>
       </button>
 
       <button @click="navigateTobrowseView">
