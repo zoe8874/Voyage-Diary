@@ -93,4 +93,8 @@ export default {
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
   z-index: 100;
 }
+@media (prefers-color-scheme: dark) {
+  .burger {background: #1a1a1a}
+  
+}
 </style>
