@@ -197,6 +197,7 @@ input[type="file"] {
   transform: none;
   box-shadow: none;
 }
+
 form {
   display: flex;
   flex-direction: column;
@@ -214,4 +215,3 @@ form {
   padding: 30px;
   gap: 20px;
 }
-

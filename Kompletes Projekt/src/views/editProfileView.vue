@@ -124,6 +124,14 @@ export default {
               placeholder="https://..."
           />
         </div>
+        <div class="field">
+          <label>Avatar URL</label>
+          <input
+              v-model="avatar_url"
+              type="text"
+              placeholder="https://..."
+          />
+        </div>
 
         <div class="buttons">
           <button class="cancel" @click="$router.back()">
