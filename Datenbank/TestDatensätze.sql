@@ -1,0 +1,15 @@
+INSERT INTO users (user_id, username, email, display_name, bio, avatar_url) VALUES
+('00000000-0000-0000-0000-000000000001', 'nordic_nomad', 'sofia@test.com', 'Sofia Andersen', 'Travel photographer based in Norway', 'https://i.pravatar.cc/150?u=sofia'),
+('00000000-0000-0000-0000-000000000002', 'spice_wanderer', 'aisha@test.com', 'Aisha Patel', 'Food lover exploring Asia', 'https://i.pravatar.cc/150?u=aisha'),
+('00000000-0000-0000-0000-000000000003', 'nomad_marcus', 'marcus@test.com', 'Marcus Chen', 'Budget travel expert', 'https://i.pravatar.cc/150?u=marcus'),
+('00000000-0000-0000-0000-000000000004', 'yuki_explores', 'yuki@test.com', 'Yuki Tanaka', 'Culture & gardens enthusiast', 'https://i.pravatar.cc/150?u=yuki'),
+('00000000-0000-0000-0000-000000000005', 'diego_travels', 'diego@test.com', 'Diego Santos', 'Hiker & adventurer', 'https://i.pravatar.cc/150?u=diego'),
+('00000000-0000-0000-0000-000000000006', 'alpine_lucas', 'lucas@test.com', 'Lucas Müller', 'Swiss Alps explorer', 'https://i.pravatar.cc/150?u=lucas');
+
+INSERT INTO posts (post_id, user_id, content, image_url, location, country, language) VALUES
+(1, '00000000-0000-0000-0000-000000000001', 'Northern Lights Photography Tips for Beginners. Capturing the aurora borealis is a dream for many travelers. Here are my hard-earned tips after countless freezing nights in the Arctic...', 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800', 'Tromsø', 'Norway', 'en'),
+(2, '00000000-0000-0000-0000-000000000002', 'Street Food Guide: Best Dishes in Bangkok. Bangkok street food scene is legendary! After eating my way through the city for 2 months, here are my absolute must-try dishes...', 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800', 'Bangkok', 'Thailand', 'en'),
+(3, '00000000-0000-0000-0000-000000000003', 'Living in Tokyo on $50 a Day. Tokyo does not have to break the bank! I spent 6 weeks here and learned all the tricks to enjoy this amazing city on a tight budget...', 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800', 'Tokyo', 'Japan', 'en'),
+(4, '00000000-0000-0000-0000-000000000004', 'Kyoto Secret Gardens: Off the Beaten Path. While everyone flocks to the famous temples, Kyoto hides dozens of serene gardens known only to locals...', 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800', 'Kyoto', 'Japan', 'en'),
+(5, '00000000-0000-0000-0000-000000000005', 'The Ultimate Patagonia Trekking Route. Patagonia is a hikers paradise. I spent 4 weeks trekking through some of the most stunning landscapes on Earth...', 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800', 'Patagonia', 'Chile', 'en'),
+(6, '00000000-0000-0000-0000-000000000006', 'Solo Backpacking Through the Swiss Alps. The Swiss Alps in summer are absolutely breathtaking. Here is how I spent 3 weeks hiking solo through mountain villages...', 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800', 'Swiss Alps', 'Switzerland', 'de');
