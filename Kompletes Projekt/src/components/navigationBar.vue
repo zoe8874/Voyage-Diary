@@ -1,39 +1,28 @@
 <script>
+import LanguageButtons from "@/components/languageButtons.vue"
+
 export default {
+  components: { LanguageButtons },
   data() {
     return {
       mobileMenuOpen: false
     }
   },
   methods: {
-    navigateTotopPostsView() {
-      this.$router.push('/topPosts')
-      this.mobileMenuOpen = false
-    },
-    navigateTobrowseView() {
-      this.$router.push('/browse')
-      this.mobileMenuOpen = false
-    },
-    navigateTocreatePostView() {
-      this.$router.push('/addPost')
-      this.mobileMenuOpen = false
-    },
-    navigateToprofileView() {
-      this.$router.push('/profile')
-      this.mobileMenuOpen = false
-    },
-    toggleMobileMenu() {
-      this.mobileMenuOpen = !this.mobileMenuOpen
-    }
+    navigateTotopPostsView() { this.$router.push('/topPosts'); this.mobileMenuOpen = false },
+    navigateTobrowseView() { this.$router.push('/browse'); this.mobileMenuOpen = false },
+    navigateTocreatePostView() { this.$router.push('/addPost'); this.mobileMenuOpen = false },
+    navigateToprofileView() { this.$router.push('/profile'); this.mobileMenuOpen = false },
+    navigateToAdminView() { this.$router.push('/admin'); this.mobileMenuOpen = false },
+    toggleMobileMenu() { this.mobileMenuOpen = !this.mobileMenuOpen }
   }
 }
 </script>
 
 <template>
   <div>
-    <!-- Desktop Navigation -->
     <nav class="desktop-nav">
-      <img src="../assets/Bild (1).png" alt="Logo" class="logo" />
+      <img src="../assets/Bild (1).png" alt="Logo" class="logo"/>
 
       <div class="nav-links">
         <button @click="navigateTotopPostsView">Top Posts</button>
@@ -41,12 +30,19 @@ export default {
         <button @click="navigateTocreatePostView">Create Post</button>
         <button @click="navigateToprofileView">Profile</button>
       </div>
+
+      <div class="nav-right">
+        <LanguageButtons/>
+        <button class="admin-btn" @click="navigateToAdminView">Admin</button>
+      </div>
     </nav>
 
-    <!-- Mobile Navigation mit Burger -->
     <div class="mobile-nav">
-      <img src="../assets/Bild (1).png" alt="Logo" class="logo" />
-      <button class="burger-btn" @click="toggleMobileMenu">☰</button>
+      <img src="../assets/Bild (1).png" alt="Logo" class="logo"/>
+      <div class="mobile-right">
+        <LanguageButtons/>
+        <button class="burger-btn" @click="toggleMobileMenu">☰</button>
+      </div>
     </div>
 
     <div v-if="mobileMenuOpen" class="mobile-dropdown">
@@ -54,12 +50,12 @@ export default {
       <button @click="navigateTobrowseView">Browse</button>
       <button @click="navigateTocreatePostView">Create Post</button>
       <button @click="navigateToprofileView">Profile</button>
+      <button @click="navigateToAdminView">Admin</button>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* ========== Grundlegendes ========== */
 .desktop-nav {
   display: flex;
   justify-content: center;
@@ -89,6 +85,13 @@ export default {
   gap: 0.8rem;
   flex-wrap: wrap;
   justify-content: center;
+  flex: 1;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .desktop-nav button,
@@ -112,6 +115,19 @@ export default {
   transform: translateY(-2px);
 }
 
+.admin-btn {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  color: #aaa;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.admin-btn:hover {
+  background: #f0f0f0 !important;
+  color: #555 !important;
+  transform: none !important;
+}
 
 .mobile-nav {
   display: none;
@@ -124,6 +140,12 @@ export default {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+.mobile-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .burger-btn {
@@ -162,21 +184,12 @@ export default {
   padding: 10px 20px;
 }
 
-
 @media (max-width: 768px) {
-  .desktop-nav {
-    display: none;
-  }
-  .mobile-nav {
-    display: flex;
-  }
+  .desktop-nav { display: none; }
+  .mobile-nav { display: flex; }
 }
 
 @media (min-width: 769px) {
-  .mobile-nav, .mobile-dropdown {
-    display: none !important;
-  }
+  .mobile-nav, .mobile-dropdown { display: none !important; }
 }
-
-
 </style>
