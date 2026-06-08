@@ -5,21 +5,18 @@ export default {
       menuOpen: false
     }
   },
-
   created() {
-    const savedsprache = localStorage.getItem('sprache')
-    if (savedsprache) {
-      this.$i18n.locale = savedsprache
+    const savedLang = localStorage.getItem('sprache')
+    if (savedLang) {
+      this.$i18n.locale = savedLang
     }
   },
-
   methods: {
-    changesprache(sprache) {
-      this.$i18n.locale = sprache
-      localStorage.setItem('sprache', sprache)
+    changeLanguage(lang) {
+      this.$i18n.locale = lang
+      localStorage.setItem('sprache', lang)
       this.menuOpen = false
     },
-
     toggleMenu() {
       this.menuOpen = !this.menuOpen
     }
@@ -28,73 +25,93 @@ export default {
 </script>
 
 <template>
-  <div id="sprachen">
-
-
-    <button class="burger" @click="toggleMenu">
-      {{ $t('|||') }}
+  <div id="language-switcher">
+    <button class="burger-lang" @click="toggleMenu">
+     |||
     </button>
 
-    <div v-if="menuOpen" class="dropdown">
-      <button @click="changesprache('en')">English (EN)</button>
-      <button @click="changesprache('de')">Deutsch (DE)</button>
-      <button @click="changesprache('es')">Español (ES)</button>
-      <button @click="changesprache('fr')">Français (FR)</button>
-      <button @click="changesprache('it')">Italiano (IT)</button>
+    <div v-if="menuOpen" class="dropdown-lang">
+      <button @click="changeLanguage('en')">English (EN)</button>
+      <button @click="changeLanguage('de')">Deutsch (DE)</button>
+      <button @click="changeLanguage('es')">Español (ES)</button>
+      <button @click="changeLanguage('fr')">Français (FR)</button>
+      <button @click="changeLanguage('it')">Italiano (IT)</button>
     </div>
-
   </div>
-
 </template>
 
 <style scoped>
-
-#sprachen {
+#language-switcher {
   position: fixed;
-  top: 0;
-  right: 0;
-  padding: 15px;
-  z-index: 1000;
+  top: 16px;
+  right: 16px;
+  z-index: 1100;
 }
 
-.burger {
-  width: 50px;
-  height: 50px;
-
+.burger-lang {
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  font-size: 22px;
-  border: none;
-  border-radius: 10px;
-  background: #f3f3ff;
+  font-size: 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--container-border);
+  border-radius: 30px;
   cursor: pointer;
   transition: 0.2s ease;
+  color: var(--text-primary);
 }
 
-.burger:hover {
-  background: #e3e3ff;
+.burger-lang:hover {
+  background: var(--heading-color);
+  color: white;
 }
 
-
-.dropdown {
+.dropdown-lang {
   position: absolute;
-  top: 65px;
+  top: 56px;
   right: 0;
-
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  background: white;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
   padding: 12px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-  z-index: 100;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--container-border);
+  min-width: 140px;
 }
-@media (prefers-color-scheme: dark) {
-  .burger {background: #1a1a1a}
-  
+
+.dropdown-lang button {
+  background: transparent;
+  border: none;
+  padding: 10px 16px;
+  text-align: left;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dropdown-lang button:hover {
+  background: var(--heading-color);
+  color: white;
+}
+
+/* Kleine Mobiloptimierung */
+@media (max-width: 480px) {
+  #language-switcher {
+    top: 12px;
+    right: 12px;
+  }
+  .burger-lang {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+  }
 }
 </style>

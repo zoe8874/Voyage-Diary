@@ -2,29 +2,28 @@
 export default {
   data() {
     return {
-      darkMode: false
+      mobileMenuOpen: false
     }
   },
-
   methods: {
     navigateTotopPostsView() {
       this.$router.push('/topPosts')
+      this.mobileMenuOpen = false
     },
-
     navigateTobrowseView() {
       this.$router.push('/browse')
+      this.mobileMenuOpen = false
     },
-
     navigateTocreatePostView() {
       this.$router.push('/addPost')
+      this.mobileMenuOpen = false
     },
-
     navigateToprofileView() {
       this.$router.push('/profile')
+      this.mobileMenuOpen = false
     },
-
-    toggleDarkMode() {
-      this.darkMode = !this.darkMode
+    toggleMobileMenu() {
+      this.mobileMenuOpen = !this.mobileMenuOpen
     }
   }
 }
@@ -32,106 +31,152 @@ export default {
 
 <template>
   <div>
-    <nav :class="{ dark: darkMode }">
-      <img src="../assets/Bild (1).png" alt="Logo" class="Logo"/>
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <img src="../assets/Bild (1).png" alt="Logo" class="logo" />
 
-      <button @click="navigateTotopPostsView">
-        <p>Top Posts</p>
-      </button>
-
-      <button @click="navigateTobrowseView">
-        <p>Browse</p>
-      </button>
-
-      <button @click="navigateTocreatePostView">
-        <p>Create Post</p>
-      </button>
-
-      <button @click="navigateToprofileView">
-        <p>Profile</p>
-      </button>
-
-    
+      <div class="nav-links">
+        <button @click="navigateTotopPostsView">Top Posts</button>
+        <button @click="navigateTobrowseView">Browse</button>
+        <button @click="navigateTocreatePostView">Create Post</button>
+        <button @click="navigateToprofileView">Profile</button>
+      </div>
     </nav>
+
+    <!-- Mobile Navigation mit Burger -->
+    <div class="mobile-nav">
+      <img src="../assets/Bild (1).png" alt="Logo" class="logo" />
+      <button class="burger-btn" @click="toggleMobileMenu">☰</button>
+    </div>
+
+    <div v-if="mobileMenuOpen" class="mobile-dropdown">
+      <button @click="navigateTotopPostsView">Top Posts</button>
+      <button @click="navigateTobrowseView">Browse</button>
+      <button @click="navigateTocreatePostView">Create Post</button>
+      <button @click="navigateToprofileView">Profile</button>
+    </div>
   </div>
 </template>
 
 <style scoped>
-nav {
+/* ========== Grundlegendes ========== */
+.desktop-nav {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-
   padding: 1rem;
   margin: 1rem auto;
-
-  width: 100%;
-
-  background: rgba(255, 255, 255, 0.7);
+  width: 90%;
+  max-width: 1200px;
+  background: var(--container-bg);
   backdrop-filter: blur(10px);
-
   border: 1px solid rgba(255, 255, 255, 0.3);
-
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.08),
-    0 1px 3px rgba(0, 0, 0, 0.05);
-
+  border-radius: 60px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
 
-img.Logo {
-  width: 15%;
+.logo {
+  width: 12%;
+  min-width: 80px;
+  max-width: 140px;
+  height: auto;
 }
 
-nav button {
+.nav-links {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.desktop-nav button,
+.mobile-dropdown button {
   background: transparent;
   border: none;
-
-  padding: 0.8rem 1.4rem;
-  border-radius: 14px;
-
+  padding: 0.7rem 1.4rem;
+  border-radius: 40px;
   font-size: 1rem;
   font-weight: 600;
-
-  color: #2d2d2d;
-
+  color: var(--text-primary);
   cursor: pointer;
-
-  transition:
-    background-color 0.25s ease,
-    transform 0.2s ease,
-    color 0.25s ease;
+  transition: all 0.25s ease;
+  white-space: nowrap;
 }
 
-nav button:hover {
-  background-color: #E9E7FF;
-  color: #5b4bdb;
-
+.desktop-nav button:hover,
+.mobile-dropdown button:hover {
+  background-color: var(--heading-color);
+  color: white;
   transform: translateY(-2px);
 }
 
-nav button:active {
-  transform: scale(0.96);
+
+.mobile-nav {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  background: var(--container-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-nav p {
-  margin: 0;
+.burger-btn {
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 12px;
 }
 
-@media (prefers-color-scheme: dark) {
-  nav {
-    background: rgba(30, 30, 30, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.burger-btn:hover {
+  background: rgba(0,0,0,0.05);
+}
 
-    box-shadow:
-      0 4px 20px rgba(0, 0, 0, 0.4),
-      0 1px 3px rgba(0, 0, 0, 0.3);
+.mobile-dropdown {
+  position: fixed;
+  top: 70px;
+  right: 16px;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  z-index: 1001;
+  border: 1px solid var(--container-border);
+}
+
+.mobile-dropdown button {
+  white-space: nowrap;
+  text-align: left;
+  padding: 10px 20px;
+}
+
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
   }
-
-  nav button:hover {
-    background-color: #333;
-    color: #9d8cff;
+  .mobile-nav {
+    display: flex;
   }
 }
+
+@media (min-width: 769px) {
+  .mobile-nav, .mobile-dropdown {
+    display: none !important;
+  }
+}
+
+
 </style>
