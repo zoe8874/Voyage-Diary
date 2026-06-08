@@ -78,13 +78,11 @@ export default {
     <NavigationBar />
 
     <div class="page">
-
       <div v-if="loading" class="loading">
         Lädt...
       </div>
 
       <div v-else class="edit-card">
-
         <h1>Edit Profile</h1>
 
         <div class="avatar-preview">
@@ -124,14 +122,7 @@ export default {
               placeholder="https://..."
           />
         </div>
-        <div class="field">
-          <label>Avatar URL</label>
-          <input
-              v-model="avatar_url"
-              type="text"
-              placeholder="https://..."
-          />
-        </div>
+        <!-- Doppelten Feld entfernt! -->
 
         <div class="buttons">
           <button class="cancel" @click="$router.back()">
@@ -146,33 +137,42 @@ export default {
             {{ saving ? 'Saving...' : 'Save' }}
           </button>
         </div>
-
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+
 .page {
   min-height: 100vh;
-  background: #fff;
+  background: var(--bg-gradient);
   padding: 32px 16px 100px;
   display: flex;
   justify-content: center;
 }
 
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-secondary);
+}
+
 .edit-card {
   width: 100%;
   max-width: 520px;
-  background: white;
-  border-radius: 20px;
+  background: var(--card-bg);
+  border-radius: 24px;
   padding: 32px;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-sm);
+  border: var(--container-border);
 }
 
 h1 {
   margin-bottom: 28px;
   font-size: 28px;
+  color: var(--heading-color);
+  text-align: center;
 }
 
 .avatar-preview {
@@ -186,14 +186,14 @@ h1 {
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #7376ff;
+  border: 3px solid var(--heading-color);
 }
 
 .avatar-placeholder {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: #7376ff;
+  background: var(--heading-color);
   color: white;
   font-size: 38px;
   display: flex;
@@ -209,50 +209,88 @@ label {
   display: block;
   margin-bottom: 6px;
   font-size: 14px;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 input {
   width: 100%;
   padding: 12px 14px;
-  border: 1.5px solid #ddd;
-  border-radius: 12px;
+  background: var(--input-bg);
+  border: var(--input-border);
+  border-radius: 14px;
   font-size: 14px;
+  color: var(--text-primary);
   outline: none;
   transition: 0.2s;
 }
 
 input:focus {
-  border-color: #7376ff;
+  border-color: var(--heading-color);
+  box-shadow: 0 0 0 3px rgba(115, 118, 255, 0.2);
 }
 
 .buttons {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 12px;
   margin-top: 28px;
 }
 
 .cancel,
 .save {
   border: none;
-  padding: 12px 18px;
-  border-radius: 12px;
+  padding: 12px 24px;
+  border-radius: 40px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 14px;
+  transition: 0.2s;
 }
 
 .cancel {
-  background: #eee;
+  background: transparent;
+  border: 1.5px solid var(--text-secondary);
+  color: var(--text-secondary);
 }
-
-.save {
-  background: #7376ff;
+.cancel:hover {
+  background: var(--text-secondary);
   color: white;
 }
 
+.save {
+  background: var(--btn-gradient);
+  color: white;
+}
+.save:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.02);
+}
 .save:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
+}
+
+
+@media (max-width: 550px) {
+  .edit-card {
+    padding: 24px 20px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  .buttons {
+    flex-direction: column;
+  }
+  .cancel, .save {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .edit-card {
+    padding: 20px 16px;
+  }
 }
 </style>

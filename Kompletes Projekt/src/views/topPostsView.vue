@@ -201,15 +201,12 @@ export default {
 
 </template>
 <style scoped>
-
-
-
 .top-posts {
   max-width: 1100px;
   margin: 0 auto;
   padding: 120px 20px 60px;
   font-family: 'Inter', sans-serif;
-  color: #1e293b;
+  color: var(--text-primary);
 }
 
 .header {
@@ -218,7 +215,7 @@ export default {
 }
 
 .header p:first-child {
-  color: #6366f1;
+  color: var(--heading-color);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -229,11 +226,11 @@ export default {
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 15px;
-  color: #0f172a;
+  color: var(--heading-color);
 }
 
 .header p:last-of-type {
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 1.05rem;
   max-width: 600px;
   margin: 0 auto;
@@ -247,21 +244,22 @@ export default {
 }
 
 .stats div {
-  background: white;
+  background: var(--card-bg);
   padding: 18px 30px;
   border-radius: 18px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-sm);
+  border: var(--container-border);
   min-width: 140px;
 }
 
 .stats strong {
   display: block;
   font-size: 1.8rem;
-  color: #111827;
+  color: var(--heading-color);
 }
 
 .stats span {
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
@@ -269,17 +267,18 @@ export default {
   position: relative;
   display: flex;
   gap: 24px;
-  background: white;
+  background: var(--card-bg);
   border-radius: 24px;
   overflow: hidden;
   margin-bottom: 30px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+  box-shadow: var(--shadow-sm);
+  border: var(--container-border);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .post-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 .rank {
@@ -288,7 +287,7 @@ export default {
   left: 18px;
   width: 42px;
   height: 42px;
-  background: #6366f1;
+  background: var(--heading-color);
   color: white;
   border-radius: 50%;
   font-weight: 700;
@@ -297,7 +296,7 @@ export default {
   justify-content: center;
   font-size: 1rem;
   z-index: 2;
-  box-shadow: 0 4px 12px rgba(99,102,241,0.4);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
 }
 
 .post-image {
@@ -327,24 +326,24 @@ export default {
   height: 54px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #e2e8f0;
+  border: 3px solid var(--border-color, #e2e8f0);
 }
 
 .author strong {
   display: block;
   font-size: 1rem;
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 .author span {
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
 .language {
   margin-left: auto;
-  background: #eef2ff;
-  color: #4f46e5 !important;
+  background: rgba(115, 118, 255, 0.15);
+  color: var(--heading-color) !important;
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 0.8rem !important;
@@ -354,12 +353,12 @@ export default {
 .content {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: #334155;
+  color: var(--text-primary);
   margin-bottom: 18px;
 }
 
 .location {
-  color: #475569;
+  color: var(--text-secondary);
   font-size: 0.95rem;
   margin-bottom: 20px;
 }
@@ -368,9 +367,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 0.9rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border-color, #e2e8f0);
   padding-top: 16px;
 }
 
@@ -378,139 +377,49 @@ export default {
   text-align: center;
   padding: 50px;
   font-size: 1.1rem;
+  color: var(--text-secondary);
 }
 
+/* ========== RESPONSIVE (bleibt fast unverändert) ========== */
 @media (max-width: 850px) {
-
   .header h1 {
     font-size: 2.2rem;
   }
-
   .post-card {
     flex-direction: column;
   }
-
   .post-image {
     width: 100%;
     height: 240px;
   }
-
   .stats {
     flex-direction: column;
     align-items: center;
     gap: 18px;
   }
-
   .author {
     flex-wrap: wrap;
   }
-
   .language {
     margin-left: 0;
   }
 }
 
 @media (max-width: 500px) {
-
   .top-posts {
     padding: 100px 14px 40px;
   }
-
   .header h1 {
     font-size: 1.8rem;
   }
-
   .post-info {
     padding: 20px;
   }
-
   .content {
     font-size: 0.98rem;
   }
-
   .stats div {
     width: 100%;
-  }
-}
-@media (prefers-color-scheme: dark) {
-
-  .top-posts {
-    background: transparent;
-    color: #e5e7eb;
-  }
-
-  .header p:first-child {
-    color: #a99bff;
-  }
-
-  .header h1 {
-    color: #f1f5f9;
-  }
-
-  .header p:last-of-type {
-    color: #94a3b8;
-  }
-
-  .stats div {
-    background: #1a1a1a;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-  }
-
-  .stats strong {
-    color: #f8fafc;
-  }
-
-  .stats span {
-    color: #94a3b8;
-  }
-
-  .post-card {
-    background: #1b1b1b;
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.7);
-  }
-
-  .post-card:hover {
-    box-shadow: 0 12px 40px rgba(0,0,0,0.85);
-  }
-
-  .rank {
-    background: #7c6cff;
-  }
-
-  .author strong {
-    color: #f1f5f9;
-  }
-
-  .author span {
-    color: #94a3b8;
-  }
-
-  .language {
-    background: #2a2a2a;
-    color: #c7d2fe !important;
-  }
-
-  .content {
-    color: #d1d5db;
-  }
-
-  .location {
-    color: #9ca3af;
-  }
-
-  .footer {
-    color: #9ca3af;
-    border-top: 1px solid #333;
-  }
-
-  .avatar {
-    border: 3px solid #2a2a2a;
-  }
-
- 
-  .top-posts > div[v-if] {
-    color: #cbd5e1;
   }
 }
 </style>
