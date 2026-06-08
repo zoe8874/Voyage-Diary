@@ -29,18 +29,15 @@ export default {
         <button @click="navigateTobrowseView">Browse</button>
         <button @click="navigateTocreatePostView">Create Post</button>
         <button @click="navigateToprofileView">Profile</button>
-      </div>
-
-      <div class="nav-right">
-        <LanguageButtons/>
         <button class="admin-btn" @click="navigateToAdminView">Admin</button>
+        <span class="lang-divider"></span>
+        <LanguageButtons/>
       </div>
     </nav>
 
     <div class="mobile-nav">
-      <img src="../assets/Bild (1).png" alt="Logo" class="logo"/>
-      <div class="mobile-right">
-        <LanguageButtons/>
+      <div class="mobile-left">
+        <img src="../assets/Bild (1).png" alt="Logo" class="logo"/>
         <button class="burger-btn" @click="toggleMobileMenu">☰</button>
       </div>
     </div>
@@ -88,11 +85,6 @@ export default {
   flex: 1;
 }
 
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 
 .desktop-nav button,
 .mobile-dropdown button {
@@ -129,6 +121,14 @@ export default {
   transform: none !important;
 }
 
+.lang-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-color);
+  margin: 0 8px;
+  display: inline-block;
+  align-self: center;
+}
 .mobile-nav {
   display: none;
   justify-content: space-between;
@@ -178,6 +178,12 @@ export default {
   border: 1px solid var(--container-border);
 }
 
+.mobile-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .mobile-dropdown button {
   white-space: nowrap;
   text-align: left;
@@ -192,4 +198,6 @@ export default {
 @media (min-width: 769px) {
   .mobile-nav, .mobile-dropdown { display: none !important; }
 }
+
+
 </style>
