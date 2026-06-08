@@ -88,3 +88,8 @@ export default {
   </form>
   </div>
 </template>
+<style scoped>
+  *{
+    margin:1%
+  }
+  </style>

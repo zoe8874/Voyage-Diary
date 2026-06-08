@@ -136,7 +136,7 @@ button:hover, .addPostbtn:hover {
   filter: brightness(1.02);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .container {
     padding: 24px;
