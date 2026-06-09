@@ -247,17 +247,13 @@ input {
 }
 
 dark_light {
-  width: 100%;
-  padding: 12px 14px;
+
   background: var(--input-bg);
   border: var(--input-border);
   border-radius: 14px;
   font-size: 14px;
   color: var(--text-primary);
-  outline: none;
-  transition: 0.2s;
-  justify-content: flex-end;
-  gap: 12px;
+
   margin-top: 28px;
 }
 input:focus {

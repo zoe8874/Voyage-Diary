@@ -158,4 +158,15 @@ button:hover {
   margin-top: 4px;
   margin-bottom: 16px;
 }
+
+dark_light {
+
+  background: var(--input-bg);
+  border: var(--input-border);
+  border-radius: 14px;
+  font-size: 14px;
+  color: var(--text-primary);
+
+  margin-top: 28px;
+}
 </style>
