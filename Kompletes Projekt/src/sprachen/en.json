@@ -38,5 +38,18 @@
   "browse": "Browse",
   "createPost": "Create Post",
   "profile": "Profile",
-  "admin": "Admin"
+  "admin": "Admin",
+  "trendingNow": "Trending Now",
+  "topPostsTitle": "Top Posts This Week",
+  "topPostsSubtitle": "Discover the most loved stories from our community of nomads.",
+  "totalLikes": "Total Likes",
+  "topStories": "Top Stories",
+  "loading": "Loading...",
+  "liked": "Liked",
+  "like": "Like",
+  "comments": "Comments",
+  "close": "Close",
+  "noComments": "No comments yet",
+  "writeComment": "Write a comment...",
+  "send": "Send"
 }

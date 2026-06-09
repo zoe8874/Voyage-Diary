@@ -38,5 +38,18 @@
   "browse": "Esplora",
   "createPost": "Crea post",
   "profile": "Profilo",
-  "admin": "Admin"
+  "admin": "Admin",
+  "trendingNow": "Di tendenza",
+  "topPostsTitle": "Post più popolari della settimana",
+  "topPostsSubtitle": "Scopri le storie più amate della nostra comunità di nomadi.",
+  "totalLikes": "Like totali",
+  "topStories": "Storie migliori",
+  "loading": "Caricamento...",
+  "liked": "Ti piace",
+  "like": "Mi piace",
+  "comments": "Commenti",
+  "close": "Chiudi",
+  "noComments": "Ancora nessun commento",
+  "writeComment": "Scrivi un commento...",
+  "send": "Invia"
 }

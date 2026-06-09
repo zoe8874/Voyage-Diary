@@ -38,5 +38,18 @@
   "browse": "Entdecken",
   "createPost": "Beitrag erstellen",
   "profile": "Profil",
-  "admin": "Admin"
+  "admin": "Admin",
+  "trendingNow": "Trending jetzt",
+  "topPostsTitle": "Top Beiträge diese Woche",
+  "topPostsSubtitle": "Entdecke die beliebtesten Geschichten unserer Nomaden-Community.",
+  "totalLikes": "Likes total",
+  "topStories": "Top Geschichten",
+  "loading": "Laden...",
+  "liked": "Geliked",
+  "like": "Liken",
+  "comments": "Kommentare",
+  "close": "Schliessen",
+  "noComments": "Noch keine Kommentare",
+  "writeComment": "Kommentar schreiben...",
+  "send": "Senden"
 }

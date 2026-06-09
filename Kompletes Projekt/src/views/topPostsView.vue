@@ -107,22 +107,22 @@ export default {
 
     <div class="top-posts">
       <div class="header">
-        <p>Trending Now</p>
-        <h1>Top Posts This Week</h1>
-        <p>Discover the most loved stories from our community of nomads.</p>
+        <p>{{ $t('trendingNow') }}</p>
+        <h1>{{ $t('topPostsTitle') }}</h1>
+        <p>{{ $t('topPostsSubtitle') }}</p>
         <div class="stats">
           <div>
             <strong>{{ totalLikes }}</strong>
-            <span>Total Likes</span>
+            <span>{{ $t('totalLikes') }}</span>
           </div>
           <div>
             <strong>{{ posts.length }}</strong>
-            <span>Top Stories</span>
+            <span>{{ $t('topStories') }}</span>
           </div>
         </div>
       </div>
 
-      <div v-if="loading">Loading...</div>
+      <div v-if="loading">{{ $t('loading') }}</div>
 
       <div v-else>
         <div v-for="(post, index) in posts" :key="post.post_id" class="post-card">
@@ -148,9 +148,9 @@ export default {
 
             <div class="footer">
               <button :class="['like-btn', isLiked(post) ? 'liked' : '']" @click="toggleLike(post)">
-                {{ isLiked(post) ? 'Geliked' : 'Liken' }} ({{ getLikeCount(post) }})
+                {{ isLiked(post) ? $t('liked') : $t('like') }} ({{ getLikeCount(post) }})
               </button>
-              <button class="comment-btn" @click="openPost(post)">Kommentare</button>
+              <button class="comment-btn" @click="openPost(post)">{{ $t('comments') }}</button>
               <span>{{ formatDate(post.created_at) }}</span>
             </div>
           </div>
@@ -160,7 +160,7 @@ export default {
 
     <div v-if="selectedPost" class="overlay" @click.self="selectedPost = null">
       <div class="modal-box">
-        <button class="close-btn" @click="selectedPost = null">Schliessen</button>
+        <button class="close-btn" @click="selectedPost = null">{{ $t('close') }}</button>
 
         <img v-if="selectedPost.image_url" :src="selectedPost.image_url" class="modal-image"/>
 
@@ -180,7 +180,7 @@ export default {
         </div>
 
         <hr>
-        <h3>Kommentare ({{ comments.length }})</h3>
+        <h3>{{ $t('comments') }} ({{ comments.length }})</h3>
 
         <div v-for="comment in comments" :key="comment.comment_id" class="comment">
           <strong>@{{ comment.users?.username }}</strong>
@@ -188,15 +188,12 @@ export default {
           <span class="comment-date">{{ formatDate(comment.created_at) }}</span>
         </div>
 
-        <p v-if="comments.length === 0">Noch keine Kommentare</p>
+        <p v-if="comments.length === 0">{{ $t('noComments') }}</p>
 
-        <div v-if="currentUser" class="comment-input">
-          <input v-model="newComment" placeholder="Kommentar schreiben..." @keyup.enter="submitComment"/>
-          <button class="submit-btn" @click="submitComment">Senden</button>
+        <div class="comment-input">
+          <input v-model="newComment" :placeholder="$t('writeComment')" @keyup.enter="submitComment"/>
+          <button class="submit-btn" @click="submitComment">{{ $t('send') }}</button>
         </div>
-        <p v-else>
-          <span class="link" @click="$router.push('/login')">Einloggen</span> um zu kommentieren
-        </p>
       </div>
     </div>
   </div>

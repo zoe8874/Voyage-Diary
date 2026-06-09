@@ -38,5 +38,18 @@
   "browse": "Explorar",
   "createPost": "Crear publicación",
   "profile": "Perfil",
-  "admin": "Admin"
+  "admin": "Admin",
+  "trendingNow": "Tendencias",
+  "topPostsTitle": "Mejores publicaciones de la semana",
+  "topPostsSubtitle": "Descubre las historias más populares de nuestra comunidad de nómadas.",
+  "totalLikes": "Likes totales",
+  "topStories": "Mejores historias",
+  "loading": "Cargando...",
+  "liked": "Te gusta",
+  "like": "Me gusta",
+  "comments": "Comentarios",
+  "close": "Cerrar",
+  "noComments": "Sin comentarios aún",
+  "writeComment": "Escribe un comentario...",
+  "send": "Enviar"
 }
