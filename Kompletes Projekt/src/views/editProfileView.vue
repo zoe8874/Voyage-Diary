@@ -117,30 +117,7 @@ export default {
               placeholder="your@email.com"
           />
         </div>
-        <div class="field">
-          <label>Email</label>
-          <input
-              v-model="email"
-              type="email"
-              placeholder="your@email.com"
-          />
-        </div>
-        <div class="field">
-          <label>Email</label>
-          <input
-              v-model="email"
-              type="email"
-              placeholder="your@email.com"
-          />
-        </div>
-        <div class="field">
-          <label>Email</label>
-          <input
-              v-model="email"
-              type="email"
-              placeholder="your@email.com"
-          />
-        </div>
+
 
         <div class="field">
           <label>Username</label>
