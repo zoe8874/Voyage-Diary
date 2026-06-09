@@ -58,5 +58,14 @@
   "allLanguages": "Tutte le lingue",
   "reset": "Reimposta",
   "postsFound": "post trovati",
-  "noPostsFound": "Nessun post trovato"
+  "noPostsFound": "Nessun post trovato",
+  "addPost": "Aggiungi post",
+  "pleaseAddPost": "Condividi la tua esperienza di viaggio con la comunità.",
+  "title": "Titolo",
+  "enterTitle": "Inserisci il titolo",
+  "destination": "Destinazione",
+  "enterDestination": "Inserisci la destinazione",
+  "image": "Immagine",
+  "description": "Descrizione",
+  "enterDescription": "Inserisci la descrizione"
 }

@@ -58,5 +58,14 @@
   "allLanguages": "All languages",
   "reset": "Reset",
   "postsFound": "posts found",
-  "noPostsFound": "No posts found"
+  "noPostsFound": "No posts found",
+  "addPost": "Add Post",
+  "pleaseAddPost": "Share your travel experience with the community.",
+  "title": "Title",
+  "enterTitle": "Enter title",
+  "destination": "Destination",
+  "enterDestination": "Enter destination",
+  "image": "Image",
+  "description": "Description",
+  "enterDescription": "Enter description"
 }

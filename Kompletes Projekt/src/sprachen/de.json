@@ -58,5 +58,14 @@
   "allLanguages": "Alle Sprachen",
   "reset": "Zurücksetzen",
   "postsFound": "Posts gefunden",
-  "noPostsFound": "Keine Posts gefunden"
+  "noPostsFound": "Keine Posts gefunden",
+  "addPost": "Beitrag hinzufügen",
+  "pleaseAddPost": "Teile dein Reiseerlebnis mit der Community.",
+  "title": "Titel",
+  "enterTitle": "Titel eingeben",
+  "destination": "Reiseziel",
+  "enterDestination": "Reiseziel eingeben",
+  "image": "Bild",
+  "description": "Beschreibung",
+  "enterDescription": "Beschreibung eingeben"
 }
