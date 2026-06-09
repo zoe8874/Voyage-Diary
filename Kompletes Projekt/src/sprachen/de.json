@@ -17,5 +17,21 @@
   "repeatPassword": "Passwort wiederholen",
   "repeatPasswordPlaceholder": "Passwort wiederholen",
   "registerBtn": "Registrieren",
-  "alreadyHaveAccountQuestion": "Haben Sie bereits ein Konto?"
+  "alreadyHaveAccountQuestion": "Haben Sie bereits ein Konto?",
+  "heroText": "Entdecke inspirierende Reisegeschichten von Nomaden aus aller Welt.",
+  "totalTravelers": "Reisende total",
+  "storiesShared": "Geteilte Geschichten",
+  "countries": "Länder",
+  "whyNomads": "Warum Nomaden uns lieben",
+  "whyNomadsText": "Mehr als nur ein Reiseblog. Eine Community von Abenteurern, die echte Erfahrungen teilen.",
+  "hiddenGems": "Versteckte Schätze",
+  "hiddenGemsText": "Finde authentische Orte abseits der Touristenhotspots.",
+  "realStories": "Echte Geschichten",
+  "realStoriesText": "Reiseerlebnisse geteilt von echten Nomaden.",
+  "community": "Community",
+  "communityText": "Verbinde dich mit Entdeckern weltweit.",
+  "ctaTitle": "Deine Reise, ihre Inspiration",
+  "ctaText": "Teile deine besten Reisegeschichten und inspiriere tausende Reisende.",
+  "startDiary": "Tagebuch starten →",
+  "explore": "Entdecken"
 }

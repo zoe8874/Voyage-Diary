@@ -17,5 +17,21 @@
   "repeatPassword": "Répéter le mot de passe",
   "repeatPasswordPlaceholder": "Répéter le mot de passe",
   "registerBtn": "S'inscrire",
-  "alreadyHaveAccountQuestion": "Vous avez déjà un compte ?"
+  "alreadyHaveAccountQuestion": "Vous avez déjà un compte ?",
+  "heroText": "Découvrez des histoires de voyage inspirantes de nomades du monde entier.",
+  "totalTravelers": "Voyageurs au total",
+  "storiesShared": "Histoires partagées",
+  "countries": "Pays",
+  "whyNomads": "Pourquoi les nomades nous aiment",
+  "whyNomadsText": "Plus qu'un simple blog de voyage. Une communauté d'aventuriers partageant de vraies expériences.",
+  "hiddenGems": "Trésors cachés",
+  "hiddenGemsText": "Trouvez des endroits authentiques loin des sites touristiques.",
+  "realStories": "Vraies histoires",
+  "realStoriesText": "Expériences de voyage partagées par de vrais nomades.",
+  "community": "Communauté",
+  "communityText": "Connectez-vous avec des explorateurs du monde entier.",
+  "ctaTitle": "Votre voyage, leur inspiration",
+  "ctaText": "Partagez vos meilleures histoires de voyage et inspirez des milliers de voyageurs.",
+  "startDiary": "Commencer votre journal →",
+  "explore": "Explorer"
 }
