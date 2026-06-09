@@ -489,4 +489,103 @@ export default {
   padding: 40px;
   font-size: 14px;
 }
+ 
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .profile-wrapper {
+    max-width: 1000px;  /* viel breiter als vorher */
+  }
+
+  .profile-header {
+    padding: 40px;
+    gap: 40px;
+  }
+
+  .avatar, .avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    font-size: 48px;
+  }
+
+  .name-row h1 {
+    font-size: 32px;
+  }
+
+  .edit-btn {
+    padding: 10px 24px;
+    font-size: 16px;
+  }
+
+  .bio {
+    font-size: 16px;
+  }
+
+  .meta {
+    font-size: 15px;
+    gap: 24px;
+  }
+
+  .stat-box {
+    padding: 28px;
+  }
+
+  .stat-box strong {
+    font-size: 36px;
+  }
+
+  .stat-box span {
+    font-size: 14px;
+  }
+
+  .tab {
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .post-card {
+    margin-bottom: 24px;
+  }
+
+  .post-img {
+    height: 260px;
+  }
+
+  .post-body {
+    padding: 24px;
+  }
+
+  .post-author strong {
+    font-size: 16px;
+  }
+
+  .post-author .handle {
+    font-size: 14px;
+  }
+
+  .post-content {
+    font-size: 16px;
+  }
+
+  .post-footer {
+    font-size: 14px;
+    gap: 20px;
+  }
+
+  .lang-badge {
+    font-size: 13px;
+    padding: 4px 12px;
+  }
+
+  
+  button, .tab, .edit-btn, .submit-btn {
+    min-height: 48px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .profile-wrapper {
+    max-width: 1100px;
+  }
+  .name-row h1 { font-size: 40px; }
+  .avatar, .avatar-placeholder { width: 140px; height: 140px; }
+}
 </style>
