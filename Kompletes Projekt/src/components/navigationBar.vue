@@ -23,16 +23,15 @@ export default {
   <div>
     <nav class="desktop-nav">
       <img src="../assets/Bild (1).png" alt="Logo" class="logo"/>
-
       <div class="nav-links">
         <button @click="navigateTotopPostsView">Top Posts</button>
         <button @click="navigateTobrowseView">Browse</button>
         <button @click="navigateTocreatePostView">Create Post</button>
         <button @click="navigateToprofileView">Profile</button>
         <button class="admin-btn" @click="navigateToAdminView">Admin</button>
-        <span class="lang-divider"></span>
-        <LanguageButtons/>
       </div>
+      <span class="lang-divider"></span>
+      <LanguageButtons/>
     </nav>
 
     <div class="mobile-nav">
@@ -40,11 +39,7 @@ export default {
         <img src="../assets/Bild (1).png" alt="Logo" class="logo"/>
         <button class="burger-btn" @click="toggleMobileMenu">☰</button>
       </div>
-      
-        <LanguageButtons/>
-       <div class="mobile-right">
-        </div>
-   
+      <LanguageButtons/>
     </div>
 
     <div v-if="mobileMenuOpen" class="mobile-dropdown">
@@ -53,24 +48,18 @@ export default {
       <button @click="navigateTocreatePostView">Create Post</button>
       <button @click="navigateToprofileView">Profile</button>
       <button @click="navigateToAdminView">Admin</button>
-    
-  
-      
     </div>
-        
   </div>
 </template>
 
 <style scoped>
-
-
 .desktop-nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  margin: 1rem auto;
+  margin: 0.3rem auto;
   width: 90%;
   max-width: 1200px;
   background: var(--container-bg);
@@ -79,6 +68,7 @@ export default {
   border-radius: 60px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
+  overflow: visible;
 }
 
 .logo {
@@ -91,11 +81,11 @@ export default {
 .nav-links {
   display: flex;
   gap: 0.8rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
+  align-items: center;
   flex: 1;
 }
-
 
 .desktop-nav button,
 .mobile-dropdown button {
@@ -140,9 +130,10 @@ export default {
   display: inline-block;
   align-self: center;
 }
+
 .mobile-nav {
   display: none;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   padding: 0.8rem 1.5rem;
   background: var(--container-bg);
@@ -153,7 +144,7 @@ export default {
   z-index: 1000;
 }
 
-.mobile-right {
+.mobile-left {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -167,8 +158,6 @@ export default {
   color: var(--text-primary);
   padding: 8px 12px;
   border-radius: 12px;
-  
-  align-self: center;
 }
 
 .burger-btn:hover {
@@ -191,26 +180,18 @@ export default {
   border: 1px solid var(--container-border);
 }
 
-.mobile-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 .mobile-dropdown button {
   white-space: nowrap;
   text-align: left;
   padding: 10px 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .desktop-nav { display: none; }
   .mobile-nav { display: flex; }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   .mobile-nav, .mobile-dropdown { display: none !important; }
 }
-
-
 </style>
