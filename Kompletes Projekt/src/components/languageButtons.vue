@@ -27,7 +27,7 @@ export default {
 <template>
   <div id="language-switcher">
     <button class="burger-lang" @click="toggleMenu">
-     |||
+      {{ $i18n.locale.toUpperCase() }}
     </button>
 
     <div v-if="menuOpen" class="dropdown-lang">
@@ -41,13 +41,13 @@ export default {
 </template>
 
 <style scoped>
-#language-switcher {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 1100;
-}
 
+#language-switcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  z-index: auto;
+}
 .burger-lang {
   width: 48px;
   height: 48px;
@@ -71,7 +71,8 @@ export default {
 .dropdown-lang {
   position: absolute;
   top: 56px;
-  right: 0;
+  left: 0;
+  right: auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -82,6 +83,7 @@ export default {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
   border: 1px solid var(--container-border);
   min-width: 140px;
+  z-index: 9999;
 }
 
 .dropdown-lang button {
