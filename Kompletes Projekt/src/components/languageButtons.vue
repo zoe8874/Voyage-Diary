@@ -71,8 +71,8 @@ export default {
 .dropdown-lang {
   position: absolute;
   top: 56px;
-  left: 0;
-  right: auto;
+  right: 0;
+  left: auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
