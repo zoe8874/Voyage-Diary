@@ -71,6 +71,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <template>
@@ -291,6 +292,77 @@ input:focus {
 @media (max-width: 400px) {
   .edit-card {
     padding: 20px 16px;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .edit-card {
+    max-width: 720px;   
+    padding: 48px;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+  }
+
+  .avatar-placeholder {
+    width: 140px;
+    height: 140px;
+    font-size: 56px;
+  }
+
+  .field {
+    margin-bottom: 28px;
+  }
+
+  label {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  input {
+    padding: 16px 20px;
+    font-size: 18px;
+    border-radius: 16px;
+  }
+
+  .buttons {
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .cancel, .save {
+    padding: 16px 32px;
+    font-size: 18px;
+  }
+}
+
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .edit-card {
+    max-width: 780px;
+    padding: 52px;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .edit-card {
+    max-width: 100%;
+    padding: 24px 20px;
+  }
+  h1 {
+    font-size: 26px;
+  }
+  input {
+    font-size: 16px;
   }
 }
 </style>
