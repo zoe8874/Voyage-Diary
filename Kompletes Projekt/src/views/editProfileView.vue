@@ -8,6 +8,7 @@ export default {
   data() {
     return {
       user: null,
+      email: '',
       username: '',
       display_name: '',
       avatar_url: '',
@@ -38,6 +39,7 @@ export default {
           .single()
 
       if (profile) {
+        this.email = profile.email || ''
         this.username = profile.username || ''
         this.display_name = profile.display_name || ''
         this.avatar_url = profile.avatar_url || ''
@@ -49,29 +51,39 @@ export default {
     async saveProfile() {
       this.saving = true
 
-      const { error } = await supabase
-          .from('users')
-          .update({
-            username: this.username,
-            display_name: this.display_name,
-            avatar_url: this.avatar_url
+      try {
+        if (this.email !== this.user.email) {
+          const { error: authError } = await supabase.auth.updateUser({
+            email: this.email
           })
-          .eq('user_id', this.user.id)
 
-      this.saving = false
+          if (authError) throw authError
+        }
 
-      if (error) {
-        alert('Fehler beim Speichern')
+        const { error: profileError } = await supabase
+            .from('users')
+            .update({
+              email: this.email,
+              username: this.username,
+              display_name: this.display_name,
+              avatar_url: this.avatar_url
+            })
+            .eq('user_id', this.user.id)
+
+        if (profileError) throw profileError
+
+        alert('Profil gespeichert!')
+        this.$router.push('/profile')
+
+      } catch (error) {
         console.error(error)
-        return
+        alert(error.message || 'Fehler beim Speichern')
       }
 
-      alert('Profil gespeichert!')
-      this.$router.push('/profile')
+      this.saving = false
     }
   }
 }
-
 </script>
 
 <template>
@@ -95,6 +107,15 @@ export default {
           <div v-else class="avatar-placeholder">
             {{ (display_name || username || '?')[0].toUpperCase() }}
           </div>
+        </div>
+
+        <div class="field">
+          <label>Email</label>
+          <input
+              v-model="email"
+              type="email"
+              placeholder="your@email.com"
+          />
         </div>
 
         <div class="field">
@@ -123,7 +144,6 @@ export default {
               placeholder="https://..."
           />
         </div>
-        <!-- Doppelten Feld entfernt! -->
 
         <div class="buttons">
           <button class="cancel" @click="$router.back()">
@@ -253,6 +273,7 @@ input:focus {
   border: 1.5px solid var(--text-secondary);
   color: var(--text-secondary);
 }
+
 .cancel:hover {
   background: var(--text-secondary);
   color: white;
@@ -262,28 +283,33 @@ input:focus {
   background: var(--btn-gradient);
   color: white;
 }
+
 .save:hover {
   transform: translateY(-2px);
   filter: brightness(1.02);
 }
+
 .save:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
 }
 
-
 @media (max-width: 550px) {
   .edit-card {
     padding: 24px 20px;
   }
+
   h1 {
     font-size: 24px;
   }
+
   .buttons {
     flex-direction: column;
   }
-  .cancel, .save {
+
+  .cancel,
+  .save {
     width: 100%;
     text-align: center;
   }
@@ -295,10 +321,9 @@ input:focus {
   }
 }
 
-
 @media (min-width: 768px) and (max-width: 1024px) {
   .edit-card {
-    max-width: 720px;   
+    max-width: 720px;
     padding: 48px;
   }
 
@@ -338,12 +363,12 @@ input:focus {
     margin-top: 40px;
   }
 
-  .cancel, .save {
+  .cancel,
+  .save {
     padding: 16px 32px;
     font-size: 18px;
   }
 }
-
 
 @media (min-width: 1025px) and (max-width: 1280px) {
   .edit-card {
@@ -352,15 +377,16 @@ input:focus {
   }
 }
 
-
 @media (max-width: 767px) {
   .edit-card {
     max-width: 100%;
     padding: 24px 20px;
   }
+
   h1 {
     font-size: 26px;
   }
+
   input {
     font-size: 16px;
   }
