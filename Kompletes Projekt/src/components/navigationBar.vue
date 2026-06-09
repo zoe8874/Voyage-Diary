@@ -40,6 +40,11 @@ export default {
         <img src="../assets/Bild (1).png" alt="Logo" class="logo"/>
         <button class="burger-btn" @click="toggleMobileMenu">☰</button>
       </div>
+      
+        <LanguageButtons/>
+       <div class="mobile-right">
+        </div>
+   
     </div>
 
     <div v-if="mobileMenuOpen" class="mobile-dropdown">
@@ -48,11 +53,16 @@ export default {
       <button @click="navigateTocreatePostView">Create Post</button>
       <button @click="navigateToprofileView">Profile</button>
       <button @click="navigateToAdminView">Admin</button>
+    
+  
+      
     </div>
+        
   </div>
 </template>
 
 <style scoped>
+
 
 .desktop-nav {
   display: flex;
@@ -132,7 +142,7 @@ export default {
 }
 .mobile-nav {
   display: none;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   padding: 0.8rem 1.5rem;
   background: var(--container-bg);
@@ -157,6 +167,8 @@ export default {
   color: var(--text-primary);
   padding: 8px 12px;
   border-radius: 12px;
+  
+  align-self: center;
 }
 
 .burger-btn:hover {
