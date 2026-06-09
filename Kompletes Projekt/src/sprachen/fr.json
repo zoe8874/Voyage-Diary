@@ -33,5 +33,10 @@
   "ctaTitle": "Votre voyage, leur inspiration",
   "ctaText": "Partagez vos meilleures histoires de voyage et inspirez des milliers de voyageurs.",
   "startDiary": "Commencer votre journal →",
-  "explore": "Explorer"
+  "explore": "Explorer",
+  "topPosts": "Meilleures publications",
+  "browse": "Explorer",
+  "createPost": "Créer une publication",
+  "profile": "Profil",
+  "admin": "Admin"
 }

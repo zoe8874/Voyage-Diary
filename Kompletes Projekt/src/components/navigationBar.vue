@@ -24,11 +24,11 @@ export default {
     <nav class="desktop-nav">
       <img src="../assets/Bild (1).png" alt="Logo" class="logo"/>
       <div class="nav-links">
-        <button @click="navigateTotopPostsView">Top Posts</button>
-        <button @click="navigateTobrowseView">Browse</button>
-        <button @click="navigateTocreatePostView">Create Post</button>
-        <button @click="navigateToprofileView">Profile</button>
-        <button class="admin-btn" @click="navigateToAdminView">Admin</button>
+        <button @click="navigateTotopPostsView">{{ $t('topPosts') }}</button>
+        <button @click="navigateTobrowseView">{{ $t('browse') }}</button>
+        <button @click="navigateTocreatePostView">{{ $t('createPost') }}</button>
+        <button @click="navigateToprofileView">{{ $t('profile') }}</button>
+        <button class="admin-btn" @click="navigateToAdminView">{{ $t('admin') }}</button>
       </div>
       <span class="lang-divider"></span>
       <LanguageButtons/>
@@ -43,11 +43,11 @@ export default {
     </div>
 
     <div v-if="mobileMenuOpen" class="mobile-dropdown">
-      <button @click="navigateTotopPostsView">Top Posts</button>
-      <button @click="navigateTobrowseView">Browse</button>
-      <button @click="navigateTocreatePostView">Create Post</button>
-      <button @click="navigateToprofileView">Profile</button>
-      <button @click="navigateToAdminView">Admin</button>
+      <button @click="navigateTotopPostsView">{{ $t('topPosts') }}</button>
+      <button @click="navigateTobrowseView">{{ $t('browse') }}</button>
+      <button @click="navigateTocreatePostView">{{ $t('createPost') }}</button>
+      <button @click="navigateToprofileView">{{ $t('profile') }}</button>
+      <button @click="navigateToAdminView">{{ $t('admin') }}</button>
     </div>
   </div>
 </template>
