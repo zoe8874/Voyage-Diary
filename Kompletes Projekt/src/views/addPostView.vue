@@ -1,6 +1,6 @@
 <script setup>
 import NavigationBar from "@/components/navigationBar.vue"
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import supabase from "@/supabase"
 import { franc } from 'franc-min'
@@ -9,10 +9,18 @@ const router = useRouter()
 
 const title = ref('')
 const destination = ref('')
+const country = ref('')
 const content = ref('')
 const image = ref(null)
 const errorMsg = ref('')
 const loading = ref(false)
+
+const formValid = computed(() => {
+  return title.value.trim() !== '' &&
+      destination.value.trim() !== '' &&
+      country.value.trim() !== '' &&
+      content.value.trim() !== ''
+})
 
 function onImageChange(e) {
   image.value = e.target.files[0]
@@ -62,6 +70,7 @@ async function submitPost() {
     content: title.value + '\n\n' + content.value,
     image_url,
     location: destination.value,
+    country: country.value,
     language
   })
 
@@ -76,42 +85,52 @@ async function submitPost() {
 </script>
 
 <template>
-  <div >
+  <div>
     <NavigationBar/>
-  <div class="content">
-  <div class="container">
-    <h1>{{ $t('addPost') }}</h1>
-    <p>{{ $t('pleaseAddPost') }}</p>
-    <hr>
+    <div class="content">
+      <div class="container">
+        <h1>{{ $t('addPost') }}</h1>
+        <p>{{ $t('pleaseAddPost') }}</p>
+        <hr>
 
-    <label for="title"><b>{{ $t('title') }}</b></label>
-    <input v-model="title" type="text" :placeholder="$t('enterTitle')" id="title" required>
+        <label for="title"><b>{{ $t('title') }}</b></label>
+        <input v-model="title" type="text" :placeholder="$t('enterTitle')" id="title" required>
 
-    <label for="destination"><b>{{ $t('destination') }}</b></label>
-    <input v-model="destination" type="text" :placeholder="$t('enterDestination')" id="destination" required>
+        <label for="destination"><b>{{ $t('destination') }}</b></label>
+        <input v-model="destination" type="text" :placeholder="$t('enterDestination')" id="destination" required>
 
-    <label for="image"><b>{{ $t('image') }}</b></label>
-    <input type="file" id="image" accept="image/*" @change="onImageChange">
+        <label for="country"><b>{{ $t('country') }}</b></label>
+        <input v-model="country" type="text" :placeholder="$t('enterCountry')" id="country" required>
 
-    <label for="content"><b>{{ $t('description') }}</b></label>
-    <textarea v-model="content" :placeholder="$t('enterDescription')" id="content" required></textarea>
+        <label for="image"><b>{{ $t('image') }}</b></label>
+        <input type="file" id="image" accept="image/*" @change="onImageChange">
 
-    <p v-if="errorMsg" style="color:red">{{ errorMsg }}</p>
-    <hr>
+        <label for="content"><b>{{ $t('description') }}</b></label>
+        <textarea v-model="content" :placeholder="$t('enterDescription')" id="content" required></textarea>
 
-    <button @click="submitPost" :disabled="loading" class="addPostbtn">
-      {{ loading ? '...' : $t('addPost') }}
-    </button>
-  </div>
-  </div>
+        <p v-if="errorMsg" style="color:red">{{ errorMsg }}</p>
+        <hr>
+
+        <button @click="submitPost" :disabled="loading || !formValid" class="addPostbtn">
+          {{ loading ? '...' : $t('addPost') }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
-<style scoped>  
-*{
-  margin-bottom:1%;
+<style scoped>
+* {
+  margin-bottom: 1%;
 }
-h1{
+
+h1 {
   color: var(--heading-color);
+}
+
+.addPostbtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }
 </style>
