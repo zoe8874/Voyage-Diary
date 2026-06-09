@@ -246,6 +246,20 @@ input {
   transition: 0.2s;
 }
 
+dark_light {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--input-bg);
+  border: var(--input-border);
+  border-radius: 14px;
+  font-size: 14px;
+  color: var(--text-primary);
+  outline: none;
+  transition: 0.2s;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
 input:focus {
   border-color: var(--heading-color);
   box-shadow: 0 0 0 3px rgba(115, 118, 255, 0.2);
