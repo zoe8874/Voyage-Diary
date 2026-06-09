@@ -62,114 +62,114 @@ export default {
 
 <template>
   <div>
-  <NavigationBar/>
+    <NavigationBar/>
 
-  <div class="page">
-    <div v-if="loading" class="loading">
-      <div class="spinner"></div>
-    </div>
-
-    <div v-else class="profile-wrapper">
-
-      <div class="profile-header">
-        <div class="avatar-wrap">
-          <img v-if="profile?.avatar_url" :src="profile.avatar_url" class="avatar"/>
-          <div v-else class="avatar-placeholder">
-            {{ (profile?.display_name || profile?.username || '?')[0].toUpperCase() }}
-          </div>
-        </div>
-
-        <div class="profile-info">
-          <div class="name-row">
-            <h1>{{ profile?.display_name || profile?.username }}</h1>
-            <button class="edit-btn" @click="$router.push('./editProfileView')">Edit Profile</button>
-          </div>
-          <p class="handle">@{{ profile?.username }}</p>
-          <p v-if="profile?.bio" class="bio">{{ profile.bio }}</p>
-          <div class="meta">
-            <span v-if="profile?.location">📍 {{ profile.location }}</span>
-            <span v-if="profile?.created_at">🗓 Joined {{ formatJoined(profile.created_at) }}</span>
-          </div>
-        </div>
+    <div class="page">
+      <div v-if="loading" class="loading">
+        <div class="spinner"></div>
       </div>
 
-      <div class="stats-grid">
-        <div class="stat-box">
-          <strong>{{ myPosts.length }}</strong>
-          <span>Posts</span>
-        </div>
-        <div class="stat-box">
-          <strong>{{ totalLikes }}</strong>
-          <span>Total Likes</span>
-        </div>
-        <div class="stat-box">
-          <strong>{{ likedPosts.length }}</strong>
-          <span>Liked</span>
-        </div>
-      </div>
+      <div v-else class="profile-wrapper">
 
-      <div class="tabs">
-        <button :class="['tab', activeTab === 'posts' ? 'active' : '']" @click="activeTab = 'posts'">
-          My Posts ({{ myPosts.length }})
-        </button>
-        <button :class="['tab', activeTab === 'liked' ? 'active' : '']" @click="activeTab = 'liked'">
-          Liked ({{ likedPosts.length }})
-        </button>
-      </div>
-
-      <div class="posts-list">
-        <template v-if="activeTab === 'posts'">
-          <div v-for="post in myPosts" :key="post.post_id" class="post-card">
-            <img v-if="post.image_url" :src="post.image_url" class="post-img"/>
-            <div class="post-body">
-              <div class="post-author">
-                <div class="author-avatar">
-                  {{ (profile?.display_name || profile?.username || '?')[0].toUpperCase() }}
-                </div>
-                <div>
-                  <strong>{{ profile?.display_name || profile?.username }}</strong>
-                  <span class="handle">@{{ profile?.username }}</span>
-                </div>
-                <span class="lang-badge">{{ post.language }}</span>
-              </div>
-              <p class="post-content">{{ truncate(post.content) }}</p>
-              <div class="post-footer">
-                <span v-if="post.location">📍 {{ post.location }}</span>
-                <span>❤️ {{ getLikeCount(post) }}</span>
-                <span>{{ formatDate(post.created_at) }}</span>
-              </div>
+        <div class="profile-header">
+          <div class="avatar-wrap">
+            <img v-if="profile?.avatar_url" :src="profile.avatar_url" class="avatar"/>
+            <div v-else class="avatar-placeholder">
+              {{ (profile?.display_name || profile?.username || '?')[0].toUpperCase() }}
             </div>
           </div>
-          <p v-if="myPosts.length === 0" class="empty">Noch keine Posts – teile dein erstes Abenteuer!</p>
-        </template>
 
-        <template v-if="activeTab === 'liked'">
-          <div v-for="post in likedPosts" :key="post?.post_id" class="post-card">
-            <img v-if="post?.image_url" :src="post.image_url" class="post-img"/>
-            <div class="post-body">
-              <div class="post-author">
-                <div class="author-avatar">
-                  {{ (post?.users?.display_name || post?.users?.username || '?')[0].toUpperCase() }}
-                </div>
-                <div>
-                  <strong>{{ post?.users?.display_name || post?.users?.username }}</strong>
-                  <span class="handle">@{{ post?.users?.username }}</span>
-                </div>
-              </div>
-              <p class="post-content">{{ truncate(post?.content) }}</p>
-              <div class="post-footer">
-                <span v-if="post?.location">📍 {{ post.location }}</span>
-                <span>❤️ {{ getLikeCount(post) }}</span>
-                <span>{{ formatDate(post?.created_at) }}</span>
-              </div>
+          <div class="profile-info">
+            <div class="name-row">
+              <h1>{{ profile?.display_name || profile?.username }}</h1>
+              <button class="edit-btn" @click="$router.push('/profile/editProfile')">{{ $t('editProfile') }}</button>
+            </div>
+            <p class="handle">@{{ profile?.username }}</p>
+            <p v-if="profile?.bio" class="bio">{{ profile.bio }}</p>
+            <div class="meta">
+              <span v-if="profile?.location">{{ profile.location }}</span>
+              <span v-if="profile?.created_at">{{ $t('joined') }} {{ formatJoined(profile.created_at) }}</span>
             </div>
           </div>
-          <p v-if="likedPosts.length === 0" class="empty">Noch keine gelikten Posts.</p>
-        </template>
-      </div>
+        </div>
 
+        <div class="stats-grid">
+          <div class="stat-box">
+            <strong>{{ myPosts.length }}</strong>
+            <span>{{ $t('myPosts') }}</span>
+          </div>
+          <div class="stat-box">
+            <strong>{{ totalLikes }}</strong>
+            <span>{{ $t('totalLikes') }}</span>
+          </div>
+          <div class="stat-box">
+            <strong>{{ likedPosts.length }}</strong>
+            <span>{{ $t('liked') }}</span>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button :class="['tab', activeTab === 'posts' ? 'active' : '']" @click="activeTab = 'posts'">
+            {{ $t('myPosts') }} ({{ myPosts.length }})
+          </button>
+          <button :class="['tab', activeTab === 'liked' ? 'active' : '']" @click="activeTab = 'liked'">
+            {{ $t('liked') }} ({{ likedPosts.length }})
+          </button>
+        </div>
+
+        <div class="posts-list">
+          <template v-if="activeTab === 'posts'">
+            <div v-for="post in myPosts" :key="post.post_id" class="post-card">
+              <img v-if="post.image_url" :src="post.image_url" class="post-img"/>
+              <div class="post-body">
+                <div class="post-author">
+                  <div class="author-avatar">
+                    {{ (profile?.display_name || profile?.username || '?')[0].toUpperCase() }}
+                  </div>
+                  <div>
+                    <strong>{{ profile?.display_name || profile?.username }}</strong>
+                    <span class="handle">@{{ profile?.username }}</span>
+                  </div>
+                  <span class="lang-badge">{{ post.language }}</span>
+                </div>
+                <p class="post-content">{{ truncate(post.content) }}</p>
+                <div class="post-footer">
+                  <span v-if="post.location">{{ post.location }}</span>
+                  <span>❤ {{ getLikeCount(post) }}</span>
+                  <span>{{ formatDate(post.created_at) }}</span>
+                </div>
+              </div>
+            </div>
+            <p v-if="myPosts.length === 0" class="empty">{{ $t('noPostsYet') }}</p>
+          </template>
+
+          <template v-if="activeTab === 'liked'">
+            <div v-for="post in likedPosts" :key="post?.post_id" class="post-card">
+              <img v-if="post?.image_url" :src="post.image_url" class="post-img"/>
+              <div class="post-body">
+                <div class="post-author">
+                  <div class="author-avatar">
+                    {{ (post?.users?.display_name || post?.users?.username || '?')[0].toUpperCase() }}
+                  </div>
+                  <div>
+                    <strong>{{ post?.users?.display_name || post?.users?.username }}</strong>
+                    <span class="handle">@{{ post?.users?.username }}</span>
+                  </div>
+                </div>
+                <p class="post-content">{{ truncate(post?.content) }}</p>
+                <div class="post-footer">
+                  <span v-if="post?.location">{{ post.location }}</span>
+                  <span>❤ {{ getLikeCount(post) }}</span>
+                  <span>{{ formatDate(post?.created_at) }}</span>
+                </div>
+              </div>
+            </div>
+            <p v-if="likedPosts.length === 0" class="empty">{{ $t('noLikedPosts') }}</p>
+          </template>
+        </div>
+
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -489,7 +489,7 @@ export default {
   padding: 40px;
   font-size: 14px;
 }
- 
+
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .profile-wrapper {
@@ -576,7 +576,7 @@ export default {
     padding: 4px 12px;
   }
 
-  
+
   button, .tab, .edit-btn, .submit-btn {
     min-height: 48px;
   }

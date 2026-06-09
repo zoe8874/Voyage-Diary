@@ -67,5 +67,11 @@
   "enterDestination": "Reiseziel eingeben",
   "image": "Bild",
   "description": "Beschreibung",
-  "enterDescription": "Beschreibung eingeben"
+  "enterDescription": "Beschreibung eingeben",
+  "editProfile": "Profil bearbeiten",
+  "joined": "Beigetreten",
+  "myPosts": "Meine Beiträge",
+  "liked": "Geliked",
+  "noPostsYet": "Noch keine Beiträge – teile dein erstes Abenteuer!",
+  "noLikedPosts": "Noch keine gelikten Beiträge."
 }

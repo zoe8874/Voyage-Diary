@@ -67,5 +67,11 @@
   "enterDestination": "Enter destination",
   "image": "Image",
   "description": "Description",
-  "enterDescription": "Enter description"
+  "enterDescription": "Enter description",
+  "editProfile": "Edit Profile",
+  "joined": "Joined",
+  "myPosts": "My Posts",
+  "liked": "Liked",
+  "noPostsYet": "No posts yet – share your first adventure!",
+  "noLikedPosts": "No liked posts yet."
 }

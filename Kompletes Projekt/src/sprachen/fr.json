@@ -67,5 +67,11 @@
   "enterDestination": "Entrez la destination",
   "image": "Image",
   "description": "Description",
-  "enterDescription": "Entrez la description"
+  "enterDescription": "Entrez la description",
+  "editProfile": "Modifier le profil",
+  "joined": "Inscrit",
+  "myPosts": "Mes publications",
+  "liked": "Aimé",
+  "noPostsYet": "Pas encore de publications – partagez votre première aventure!",
+  "noLikedPosts": "Pas encore de publications aimées."
 }
