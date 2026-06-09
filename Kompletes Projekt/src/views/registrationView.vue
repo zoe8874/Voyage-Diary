@@ -50,7 +50,7 @@ export default {
 <template>
 
 
-
+  <LanguageButtons/>
 
 
 <div class="page">
@@ -84,7 +84,7 @@ export default {
       <button type="button" @click="navigateToLoginView">{{ $t('login') }}</button>
     </div>
 
-    <LanguageButtons/>
+
   </form>
   </div>
 </template>
