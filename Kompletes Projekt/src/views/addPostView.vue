@@ -111,4 +111,7 @@ async function submitPost() {
 *{
   margin-bottom:1%;
 }
+h1{
+  color: var(--heading-color);
+}
 </style>
