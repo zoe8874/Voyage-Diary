@@ -51,5 +51,12 @@
   "close": "Close",
   "noComments": "No comments yet",
   "writeComment": "Write a comment...",
-  "send": "Send"
+  "send": "Send",
+  "browseSubtitle": "Search and filter all travel stories",
+  "searchPlaceholder": "Search by content, location, user...",
+  "filterCountry": "Filter by country...",
+  "allLanguages": "All languages",
+  "reset": "Reset",
+  "postsFound": "posts found",
+  "noPostsFound": "No posts found"
 }

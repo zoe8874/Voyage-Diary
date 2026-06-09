@@ -51,5 +51,12 @@
   "close": "Schliessen",
   "noComments": "Noch keine Kommentare",
   "writeComment": "Kommentar schreiben...",
-  "send": "Senden"
+  "send": "Senden",
+  "browseSubtitle": "Alle Reisegeschichten durchsuchen und filtern",
+  "searchPlaceholder": "Suchen nach Inhalt, Ort, User...",
+  "filterCountry": "Land filtern...",
+  "allLanguages": "Alle Sprachen",
+  "reset": "Zurücksetzen",
+  "postsFound": "Posts gefunden",
+  "noPostsFound": "Keine Posts gefunden"
 }

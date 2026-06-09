@@ -138,26 +138,26 @@ export default {
 
     <div class="page">
       <div class="container">
-        <h1>Browse</h1>
-        <p>Alle Reisegeschichten durchsuchen und filtern</p>
+        <h1>{{ $t('browse') }}</h1>
+        <p>{{ $t('browseSubtitle') }}</p>
 
         <div class="filters">
-          <input v-model="searchText" placeholder="Suchen nach Inhalt, Ort, User..."/>
-          <input v-model="filterCountry" placeholder="Land filtern..."/>
+          <input v-model="searchText" :placeholder="$t('searchPlaceholder')"/>
+          <input v-model="filterCountry" :placeholder="$t('filterCountry')"/>
           <select v-model="filterLanguage">
-            <option value="">Alle Sprachen</option>
+            <option value="">{{ $t('allLanguages') }}</option>
             <option v-for="lang in uniqueLanguages()" :key="lang" :value="lang">{{ lang }}</option>
           </select>
-          <button class="reset-btn" @click="resetFilter">Zurücksetzen</button>
+          <button class="reset-btn" @click="resetFilter">{{ $t('reset') }}</button>
         </div>
 
-        <p class="result-count">{{ filteredPosts.length }} Posts gefunden</p>
+        <p class="result-count">{{ filteredPosts.length }} {{ $t('postsFound') }}</p>
       </div>
 
-      <div v-if="loading" class="container"><p>Loading...</p></div>
+      <div v-if="loading" class="container"><p>{{ $t('loading') }}</p></div>
 
       <div v-else-if="filteredPosts.length === 0" class="container">
-        <p>Keine Posts gefunden</p>
+        <p>{{ $t('noPostsFound') }}</p>
       </div>
 
       <div v-else class="posts-list">
@@ -182,9 +182,9 @@ export default {
 
           <div class="post-actions">
             <button :class="['action-btn', isLiked(post) ? 'liked' : '']" @click="toggleLike(post)">
-              {{ isLiked(post) ? 'Geliked' : 'Liken' }} ({{ getLikeCount(post) }})
+              {{ isLiked(post) ? $t('liked') : $t('like') }} ({{ getLikeCount(post) }})
             </button>
-            <button class="action-btn" @click="openPost(post)">Kommentare</button>
+            <button class="action-btn" @click="openPost(post)">{{ $t('comments') }}</button>
           </div>
         </div>
       </div>
@@ -192,7 +192,7 @@ export default {
 
     <div v-if="selectedPost" class="overlay" @click.self="selectedPost = null">
       <div class="modal-box">
-        <button class="close-btn" @click="selectedPost = null">Schliessen</button>
+        <button class="close-btn" @click="selectedPost = null">{{ $t('close') }}</button>
 
         <img v-if="selectedPost.image_url" :src="selectedPost.image_url" class="modal-image"/>
 
@@ -213,7 +213,7 @@ export default {
         </div>
 
         <hr>
-        <h3>Kommentare ({{ comments.length }})</h3>
+        <h3>{{ $t('comments') }} ({{ comments.length }})</h3>
 
         <div v-for="comment in comments" :key="comment.comment_id" class="comment">
           <strong>@{{ comment.users?.username }}</strong>
@@ -221,15 +221,12 @@ export default {
           <span class="comment-date">{{ formatDate(comment.created_at) }}</span>
         </div>
 
-        <p v-if="comments.length === 0">Noch keine Kommentare</p>
+        <p v-if="comments.length === 0">{{ $t('noComments') }}</p>
 
-        <div v-if="currentUser" class="comment-input">
-          <input v-model="newComment" placeholder="Kommentar schreiben..." @keyup.enter="submitComment"/>
-          <button class="submit-btn" @click="submitComment">Senden</button>
+        <div class="comment-input">
+          <input v-model="newComment" :placeholder="$t('writeComment')" @keyup.enter="submitComment"/>
+          <button class="submit-btn" @click="submitComment">{{ $t('send') }}</button>
         </div>
-        <p v-else>
-          <span class="link" @click="$router.push('/login')">Einloggen</span> um zu kommentieren
-        </p>
       </div>
     </div>
   </div>
@@ -247,12 +244,17 @@ export default {
   color: var(--text-primary);
   display: flex !important;
   flex-direction: column !important;
+  position: relative;
+  z-index: 0;
+  isolation: auto;
 }
 
 .container {
   max-width: 1100px;
   margin: 20px auto;
   width: 100%;
+  position: relative;
+  z-index: 999;
 
 }
 

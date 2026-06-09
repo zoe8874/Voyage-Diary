@@ -51,5 +51,12 @@
   "close": "Cerrar",
   "noComments": "Sin comentarios aún",
   "writeComment": "Escribe un comentario...",
-  "send": "Enviar"
+  "send": "Enviar",
+  "browseSubtitle": "Buscar y filtrar todas las historias de viaje",
+  "searchPlaceholder": "Buscar por contenido, lugar, usuario...",
+  "filterCountry": "Filtrar por país...",
+  "allLanguages": "Todos los idiomas",
+  "reset": "Restablecer",
+  "postsFound": "publicaciones encontradas",
+  "noPostsFound": "No se encontraron publicaciones"
 }
