@@ -53,6 +53,7 @@ export default {
 </template>
 
 <style scoped>
+
 .desktop-nav {
   display: flex;
   justify-content: center;

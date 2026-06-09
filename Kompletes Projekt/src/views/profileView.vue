@@ -176,13 +176,66 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap');
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-gradient: linear-gradient(135deg, #f3e8ff, #ffffff);
+  --text-primary: #1e293b;
+  --text-secondary: #666;
+  --heading-color: #5c5cff;
+  --container-bg: rgba(255, 255, 255, 0.9);
+  --container-border: 1px solid rgba(0, 0, 0, 0.05);
+  --card-bg: white;
+  --input-bg: white;
+  --input-border: 2px solid #e0d7ff;
+  --btn-gradient: linear-gradient(135deg, #5c5cff, #a99bff);
+  --shadow-sm: 0 20px 50px rgba(0, 0, 0, 0.08);
+  --border-color: #e2e8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-gradient: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    --text-primary: #e5e7eb;
+    --text-secondary: #9ca3af;
+    --heading-color: #a99bff;
+    --container-bg: rgba(30, 30, 30, 0.95);
+    --container-border: 1px solid rgba(255, 255, 255, 0.1);
+    --card-bg: #1e1e1e;
+    --input-bg: #2a2a2a;
+    --input-border: 2px solid #4a4a4a;
+    --btn-gradient: linear-gradient(135deg, #7c6cff, #5c5cff);
+    --shadow-sm: 0 20px 50px rgba(0, 0, 0, 0.5);
+    --border-color: #333;
+  }
+}
+
+.dark {
+  --bg-gradient: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --heading-color: #a99bff;
+  --container-bg: rgba(30, 30, 30, 0.95);
+  --container-border: 1px solid rgba(255, 255, 255, 0.1);
+  --card-bg: #1e1e1e;
+  --input-bg: #2a2a2a;
+  --input-border: 2px solid #4a4a4a;
+  --btn-gradient: linear-gradient(135deg, #7c6cff, #5c5cff);
+  --shadow-sm: 0 20px 50px rgba(0, 0, 0, 0.5);
+  --border-color: #333;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .page {
   min-height: 100vh;
-  background: #ffffff;
+  background: var(--bg-gradient);
   font-family: 'DM Sans', sans-serif;
-  color: #1a1a1a;
+  color: var(--text-primary);
   padding: 32px 16px 80px;
 }
 
@@ -196,13 +249,15 @@ export default {
 .spinner {
   width: 36px;
   height: 36px;
-  border: 3px solid #e8e0d5;
-  border-top-color: #7376ff;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--heading-color);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
 .profile-wrapper {
   max-width: 720px;
@@ -213,10 +268,10 @@ export default {
   display: flex;
   gap: 24px;
   align-items: flex-start;
-  background: white;
+  background: var(--card-bg);
   border-radius: 20px;
   padding: 32px;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-sm);
   margin-bottom: 20px;
 }
 
@@ -227,16 +282,15 @@ export default {
   height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #7376ff;
+  border: 3px solid var(--heading-color);
 }
 
 .avatar-placeholder {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7376ff, #7376ff);
+  background: var(--heading-color);
   color: white;
-
   font-size: 36px;
   display: flex;
   align-items: center;
@@ -254,18 +308,16 @@ export default {
 }
 
 .name-row h1 {
- 
   font-size: 24px;
-  color: #1a1a1a;
+  color: var(--text-primary);
 }
 
 .edit-btn {
   background: white;
-  border: 1.5px solid #7376ff;
-  color: #7376ff;
+  border: 1.5px solid var(--heading-color);
+  color: var(--heading-color);
   padding: 6px 16px;
   border-radius: 20px;
- 
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -274,12 +326,12 @@ export default {
 }
 
 .edit-btn:hover {
-  background: #7376ff;
+  background: var(--heading-color);
   color: white;
 }
 
 .handle {
-  color: #7376ff;
+  color: var(--heading-color);
   font-size: 14px;
   margin-bottom: 10px;
   display: block;
@@ -287,7 +339,7 @@ export default {
 
 .bio {
   font-size: 14px;
-  color: #7376ff;
+  color: var(--text-primary);
   line-height: 1.6;
   margin-bottom: 10px;
 }
@@ -296,7 +348,7 @@ export default {
   display: flex;
   gap: 16px;
   font-size: 13px;
-  color: #888;
+  color: var(--text-secondary);
   flex-wrap: wrap;
 }
 
@@ -308,24 +360,23 @@ export default {
 }
 
 .stat-box {
-  background: white;
+  background: var(--card-bg);
   border-radius: 16px;
   padding: 20px;
   text-align: center;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-sm);
 }
 
 .stat-box strong {
   display: block;
-  
   font-size: 26px;
-  color: #7376ff;
+  color: var(--heading-color);
   margin-bottom: 4px;
 }
 
 .stat-box span {
   font-size: 12px;
-  color: #888;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -340,27 +391,26 @@ export default {
   flex: 1;
   padding: 12px;
   border-radius: 12px;
-  border: 1.5px solid #e8e0d5;
-  background: white;
-
+  border: 1.5px solid var(--border-color);
+  background: var(--card-bg);
   font-size: 14px;
   font-weight: 500;
-  color: #888;
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .tab.active {
-  background: #7376ff;
-  border-color: #7376ff;
+  background: var(--heading-color);
+  border-color: var(--heading-color);
   color: white;
 }
 
 .post-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-sm);
   margin-bottom: 16px;
   transition: transform 0.2s;
 }
@@ -386,7 +436,7 @@ export default {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7376ff, #7386ff);
+  background: var(--btn-gradient);
   color: white;
   font-size: 14px;
   font-weight: 600;
@@ -396,13 +446,22 @@ export default {
   flex-shrink: 0;
 }
 
-.post-author strong { font-size: 14px; display: block; }
-.post-author .handle { font-size: 12px; margin-bottom: 0; }
+.post-author strong {
+  font-size: 14px;
+  display: block;
+  color: var(--text-primary);
+}
+
+.post-author .handle {
+  font-size: 12px;
+  margin-bottom: 0;
+  color: var(--heading-color);
+}
 
 .lang-badge {
   margin-left: auto;
-  background: #faf0e6;
-  color: #7376ff;
+  background: var(--input-bg);
+  color: var(--heading-color);
   padding: 3px 10px;
   border-radius: 20px;
   font-size: 11px;
@@ -411,7 +470,7 @@ export default {
 
 .post-content {
   font-size: 14px;
-  color: #444;
+  color: var(--text-primary);
   line-height: 1.6;
   margin-bottom: 12px;
 }
@@ -420,13 +479,13 @@ export default {
   display: flex;
   gap: 16px;
   font-size: 13px;
-  color: #aaa;
+  color: var(--text-secondary);
   flex-wrap: wrap;
 }
 
 .empty {
   text-align: center;
-  color: #aaa;
+  color: var(--text-secondary);
   padding: 40px;
   font-size: 14px;
 }
