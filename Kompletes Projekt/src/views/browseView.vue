@@ -236,16 +236,24 @@ export default {
 </template>
 <style scoped>
 
+
+
+
+
 .page {
   min-height: 100vh;
   background: var(--bg-gradient);
   padding: 32px 20px 80px;
   color: var(--text-primary);
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .container {
   max-width: 1100px;
-  margin: 0 auto;
+  margin: 20px auto;
+  width: 100%;
+
 }
 
 h1 {
@@ -322,6 +330,7 @@ h1 {
   gap: 24px;
   max-width: 1100px;
   margin: 0 auto;
+  //width: 100%;
 }
 
 .post-card {
