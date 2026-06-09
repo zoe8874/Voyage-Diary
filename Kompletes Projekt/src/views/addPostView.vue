@@ -106,3 +106,9 @@ async function submitPost() {
   </div>
   </div>
 </template>
+
+<style scoped>  
+*{
+  margin-bottom:1%;
+}
+</style>

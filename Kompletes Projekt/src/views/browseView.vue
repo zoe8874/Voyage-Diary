@@ -236,4 +236,355 @@ export default {
 </template>
 <style scoped>
 
+.page {
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  padding: 32px 20px 80px;
+  color: var(--text-primary);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--heading-color);
+  margin-bottom: 8px;
+}
+
+.container > p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 24px;
+  border: var(--container-border);
+}
+
+.filters input,
+.filters select {
+  flex: 1;
+  min-width: 150px;
+  padding: 12px 16px;
+  background: var(--input-bg);
+  border: var(--input-border);
+  border-radius: 40px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: 0.2s;
+}
+
+.filters input:focus,
+.filters select:focus {
+  border-color: var(--heading-color);
+  box-shadow: 0 0 0 3px rgba(115, 118, 255, 0.2);
+}
+
+.reset-btn {
+  background: transparent;
+  border: 1.5px solid var(--heading-color);
+  color: var(--heading-color);
+  padding: 12px 24px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.reset-btn:hover {
+  background: var(--heading-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.result-count {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  text-align: right;
+}
+
+/* ========== POSTS LIST (KARTEN) ========== */
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.post-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  overflow: hidden;
+  border: var(--container-border);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.post-image {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+}
+
+.post-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px 12px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--heading-color);
+}
+
+.post-author strong {
+  color: var(--text-primary);
+  font-size: 1rem;
+  display: block;
+}
+
+.handle {
+  font-size: 0.8rem;
+  color: var(--heading-color);
+}
+
+.lang-badge {
+  margin-left: auto;
+  background: rgba(115, 118, 255, 0.15);
+  color: var(--heading-color);
+  padding: 4px 12px;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.post-content {
+  padding: 0 24px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.post-meta {
+  padding: 12px 24px;
+  display: flex;
+  gap: 20px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+  margin-top: 12px;
+}
+
+.post-actions {
+  padding: 0 24px 20px;
+  display: flex;
+  gap: 16px;
+}
+
+.action-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+  color: var(--text-primary);
+}
+
+.action-btn:hover {
+  background: var(--heading-color);
+  border-color: var(--heading-color);
+  color: white;
+}
+
+.action-btn.liked {
+  background: var(--heading-color);
+  color: white;
+  border-color: var(--heading-color);
+}
+
+/* ========== MODAL (OVERLAY) ========== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: 20px;
+}
+
+.modal-box {
+  background: var(--card-bg);
+  border-radius: 32px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 24px;
+  position: relative;
+  border: var(--container-border);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.close-btn {
+  position: sticky;
+  top: 0;
+  float: right;
+  background: var(--heading-color);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  font-size: 0.8rem;
+}
+
+.modal-image {
+  width: 100%;
+  border-radius: 20px;
+  margin: 16px 0;
+}
+
+.comment {
+  background: var(--input-bg);
+  border-radius: 20px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.comment p {
+  margin: 6px 0;
+  color: var(--text-primary);
+}
+
+.comment-date {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.comment-input {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.comment-input input {
+  flex: 1;
+  padding: 12px 16px;
+  background: var(--input-bg);
+  border: var(--input-border);
+  border-radius: 40px;
+  color: var(--text-primary);
+}
+
+.submit-btn {
+  background: var(--btn-gradient);
+  border: none;
+  padding: 0 20px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.link {
+  color: var(--heading-color);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+hr {
+  margin: 20px 0;
+  border-color: var(--border-color);
+}
+
+
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 16px 60px;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .filters {
+    flex-direction: column;
+  }
+  .filters input,
+  .filters select,
+  .reset-btn {
+    width: 100%;
+  }
+  .post-author {
+    padding: 16px 20px 8px;
+  }
+  .post-content {
+    padding: 0 20px;
+  }
+  .post-meta {
+    padding: 8px 20px;
+  }
+  .post-actions {
+    padding: 0 20px 16px;
+  }
+  .modal-box {
+    padding: 20px;
+    max-height: 90vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-author {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .lang-badge {
+    margin-left: 0;
+  }
+  .action-btn {
+    flex: 1;
+    text-align: center;
+  }
+  .comment-input {
+    flex-direction: column;
+  }
+  .submit-btn {
+    padding: 12px;
+  }
+}
 </style>
