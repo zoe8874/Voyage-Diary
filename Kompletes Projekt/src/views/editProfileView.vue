@@ -92,7 +92,7 @@ export default {
 
     <div class="page">
       <div v-if="loading" class="loading">
-        Lädt...
+        Loading...
       </div>
 
       <div v-else class="edit-card">
@@ -114,7 +114,7 @@ export default {
           <input
               v-model="email"
               type="email"
-              placeholder="your@email.com"
+              placeholder="example@email.com"
           />
         </div>
 
@@ -138,11 +138,13 @@ export default {
         </div>
 
         <div class="field">
-          <label>Avatar URL</label>
+          <label>Avatar</label>
           <input
-              v-model="avatar_url"
-              type="text"
-              placeholder="https://..."
+              type="file"
+              id="image"
+              accept="image/*"
+              @change="onImageChange"
+              
           />
         </div>
 
