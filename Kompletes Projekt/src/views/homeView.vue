@@ -27,7 +27,7 @@ export default {
       </div>
     </section>
 
-    <!-- Stats Banner -->
+
     <section class="stats-wrapper">
       <div class="stats-card">
         <div class="stat">
@@ -125,6 +125,11 @@ export default {
 
 
 
+
+
+
+
+
 .stats-wrapper {
   margin-top: -40px;
   padding: 0 20px;
@@ -157,6 +162,10 @@ export default {
 
 
 
+
+
+
+
 .content-section {
   padding: 80px 20px;
 }
@@ -176,6 +185,10 @@ export default {
   max-width: 650px;
   margin: auto;
 }
+
+
+
+
 
 
 
@@ -202,6 +215,8 @@ export default {
 .info-card h3 {
   margin-bottom: 10px;
 }
+
+
 
 
 
@@ -282,7 +297,7 @@ footer {
   }
 
   .hero h1 {
-    color: #ffffff;
+    color: #bccfe6;
   }
 
   .hero h2 {
@@ -290,7 +305,7 @@ footer {
   }
 
   .hero-text {
-    color: #cbd5e1;
+    color: #bccfe6;
   }
 
 
