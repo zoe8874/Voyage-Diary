@@ -491,4 +491,55 @@ h3 { font-size: 1rem; color: var(--text-primary); margin: 0; }
   .content { font-size: 0.98rem; }
   .stats div { width: 100%; }
 }
+
+
+
+
+#light-fix{
+
+  align-self: flex-end;
+
+  border: none;
+
+  background: none;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  color: var(--text-secondary);
+
+  padding: 14px 20px;
+
+  background: var(--btn-gradient);
+
+  border: none;
+
+  border-radius: 14px;
+
+  color: white;
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  background: var(--card-bg);
+
+  color: #1a1a1a;
+  color: #1a1a1a;
+  color: #1a1a1a;
+  color: #1a1a1a;
+
+
+
+
+
+
+}
+
+
+
 </style>
+
