@@ -55,20 +55,14 @@ export default {
 
   <div class="page">
     <div class="container">
-<<<<<<< Updated upstream
       <h2>{{ $t('register') }}</h2>
       <p>{{ $t('pleaseRegister') }}</p>
-=======
-      <h1>{{ $t('register') }}</h1>
-
-
->>>>>>> Stashed changes
 
       <form @submit.prevent="register">
         <input v-model="username" type="text" :placeholder="$t('enterUsername')" id="username" required/>
         <input v-model="email" type="text" :placeholder="$t('enterEmail')" id="email" required/>
         <input v-model="password" type="password" :placeholder="$t('enterPassword')" id="psw" required/>
-        <input v-model="passwordRepeat" type="password" :placeholder="$t('enterRepeatPassword')" id="psw-repeat" required/>
+        <input v-model="passwordRepeat" type="password" :placeholder="$t('repeatPassword')" id="psw-repeat" required/>
 
         <p v-if="errorMsg" class="error-msg">{{ errorMsg }}</p>
         <p v-if="successMsg" class="success-msg">{{ successMsg }}</p>
@@ -196,17 +190,23 @@ button {
   color: var(--heading-color);
 }
 
+
+
 .btn-secondary:hover {
   background: var(--heading-color);
   color: white;
   transform: translateY(-2px);
 }
 
+
+
 .lang-wrapper {
   display: flex;
   justify-content: flex-end;
   padding: 16px;
 }
+
+
 
 @media (max-width: 550px) {
   .container { padding: 28px 20px; }
@@ -215,8 +215,16 @@ button {
   button { padding: 12px; }
 }
 
+
+
 @media (max-width: 400px) {
   .container { padding: 24px 16px; }
   input { padding: 12px 14px; }
 }
 </style>
+
+
+
+
+
+
