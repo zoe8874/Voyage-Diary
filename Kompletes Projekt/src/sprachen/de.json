@@ -74,5 +74,11 @@
   "liked": "Geliked",
   "noPostsYet": "Noch keine Beiträge – teile dein erstes Abenteuer!",
   "noLikedPosts": "Noch keine gelikten Beiträge.",
-  "enterCountry": "Land eingeben"
+  "enterCountry": "Land eingeben",
+  "editProfile": "Edit Profile",
+  "email": "Email",
+  "username": "Benutzername",
+  "displayName": "Angezeigter Name",
+  "pfp": "Profilbild",
+  "cancel": "cancel"
 }
