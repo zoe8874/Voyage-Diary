@@ -79,6 +79,8 @@
   "username": "Username",
   "displayName": "Display name",
   "pfp": "Profile Picture",
-  "cancel": "cancel"
+  "cancel": "cancel",
+  "country": "Country",
+  "enterCountry": "Enter a country"
 }
 

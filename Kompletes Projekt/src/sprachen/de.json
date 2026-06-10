@@ -80,5 +80,6 @@
   "username": "Benutzername",
   "displayName": "Angezeigter Name",
   "pfp": "Profilbild",
-  "cancel": "cancel"
+  "cancel": "cancel",
+  "country": "Land"
 }
