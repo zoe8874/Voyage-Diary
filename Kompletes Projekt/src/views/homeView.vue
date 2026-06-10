@@ -14,7 +14,10 @@ export default {
 
 <template>
   <div class="home-view">
-    <languageButtons />
+
+    <div class="lang-wrapper">
+      <LanguageButtons/>
+    </div>
 
     <section class="hero">
       <div class="hero-content">
@@ -118,15 +121,7 @@ export default {
 }
 
 
-.trending-badge {
-  display: inline-block;
-  background: rgba(255,255,255,0.2);
-  border: 1px solid rgba(255,255,255,0.3);
-  backdrop-filter: blur(8px);
-  padding: 10px 18px;
-  border-radius: 999px;
-  margin-bottom: 25px;
-}
+
 
 
 
@@ -376,15 +371,10 @@ footer {
   }
 }
 
-dark_light {
-
-  background: var(--input-bg);
-  border: var(--input-border);
-  border-radius: 14px;
-  font-size: 14px;
-  color: var(--text-primary);
-
-  margin-top: 28px;
+.lang-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
 }
 
 </style>
