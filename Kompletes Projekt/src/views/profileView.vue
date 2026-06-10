@@ -323,6 +323,7 @@ export default {
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
+  background: var(--card-bg);
 }
 
 .edit-btn:hover {

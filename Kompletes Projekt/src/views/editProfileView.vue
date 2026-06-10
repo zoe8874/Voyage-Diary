@@ -144,7 +144,7 @@ export default {
               id="image"
               accept="image/*"
               @change="onImageChange"
-              
+
           />
         </div>
 
