@@ -1,11 +1,24 @@
 <script>
 import LanguageButtons from "@/components/languageButtons.vue"
+import supabase from "@/supabase"
 
 export default {
   components: { LanguageButtons },
   data() {
     return {
-      mobileMenuOpen: false
+      mobileMenuOpen: false,
+      isAdmin: false
+    }
+  },
+  async mounted() {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user) {
+      const { data } = await supabase
+          .from('users')
+          .select('is_admin')
+          .eq('user_id', user.id)
+          .single()
+      this.isAdmin = data?.is_admin || false
     }
   },
   methods: {
@@ -13,7 +26,7 @@ export default {
     navigateTobrowseView() { this.$router.push('/browse'); this.mobileMenuOpen = false },
     navigateTocreatePostView() { this.$router.push('/addPost'); this.mobileMenuOpen = false },
     navigateToprofileView() { this.$router.push('/profile'); this.mobileMenuOpen = false },
-    navigateToAdminView() { this.$router.push('/admin'); this.mobileMenuOpen = false },
+    navigateToAdminView() { this.$router.push('/admin/dashboard'); this.mobileMenuOpen = false },
     toggleMobileMenu() { this.mobileMenuOpen = !this.mobileMenuOpen }
   }
 }
@@ -28,7 +41,7 @@ export default {
         <button @click="navigateTobrowseView">{{ $t('browse') }}</button>
         <button @click="navigateTocreatePostView">{{ $t('createPost') }}</button>
         <button @click="navigateToprofileView">{{ $t('profile') }}</button>
-        <button class="admin-btn" @click="navigateToAdminView">{{ $t('admin') }}</button>
+        <button v-if="isAdmin" class="admin-btn" @click="navigateToAdminView">{{ $t('admin') }}</button>
       </div>
       <span class="lang-divider"></span>
       <LanguageButtons/>
@@ -47,7 +60,7 @@ export default {
       <button @click="navigateTobrowseView">{{ $t('browse') }}</button>
       <button @click="navigateTocreatePostView">{{ $t('createPost') }}</button>
       <button @click="navigateToprofileView">{{ $t('profile') }}</button>
-      <button @click="navigateToAdminView">{{ $t('admin') }}</button>
+      <button v-if="isAdmin" @click="navigateToAdminView">{{ $t('admin') }}</button>
     </div>
   </div>
 </template>
@@ -80,7 +93,6 @@ export default {
 .nav-links {
   display: flex;
   gap: 0.8rem;
-  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   flex: 1;
@@ -136,7 +148,6 @@ export default {
   align-items: center;
   padding: 0.8rem 1.5rem;
   background: var(--container-bg);
-  backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,0.1);
   position: sticky;
   top: 0;
@@ -168,7 +179,6 @@ export default {
   top: 70px;
   right: 16px;
   background: var(--card-bg);
-  backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 12px;
   display: flex;
