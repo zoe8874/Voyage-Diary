@@ -52,8 +52,14 @@ export default {
 
   <div class="page">
     <div class="container">
+<<<<<<< Updated upstream
       <h2>{{ $t('register') }}</h2>
       <p>{{ $t('pleaseRegister') }}</p>
+=======
+      <h1>{{ $t('register') }}</h1>
+
+
+>>>>>>> Stashed changes
 
       <form @submit.prevent="register">
         <input v-model="username" type="text" :placeholder="$t('enterUsername')" id="username" required/>
