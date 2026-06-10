@@ -48,7 +48,10 @@ export default {
 </script>
 
 <template>
-  <LanguageButtons/>
+
+  <div class="lang-wrapper">
+    <LanguageButtons/>
+  </div>
 
   <div class="page">
     <div class="container">
@@ -81,12 +84,13 @@ export default {
 
 <style scoped>
 .page {
-  min-height: 100vh;
+  height: 100vh;
   background: var(--bg-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  overflow: hidden;
 }
 
 .container {
@@ -196,6 +200,12 @@ button {
   background: var(--heading-color);
   color: white;
   transform: translateY(-2px);
+}
+
+.lang-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
 }
 
 @media (max-width: 550px) {

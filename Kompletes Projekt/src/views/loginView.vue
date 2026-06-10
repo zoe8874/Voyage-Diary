@@ -33,7 +33,10 @@ export default {
 
 <template>
   <div>
-    <LanguageButtons />
+
+    <div class="lang-wrapper">
+      <LanguageButtons/>
+    </div>
 
     <div class="page">
       <div class="container">
@@ -41,16 +44,16 @@ export default {
 
         <form @submit.prevent="login">
           <input
-            v-model="email"
-            type="email"
-            :placeholder="$t('email')"
-            required
+              v-model="email"
+              type="email"
+              :placeholder="$t('email')"
+              required
           />
           <input
-            v-model="password"
-            type="password"
-            :placeholder="$t('password')"
-            required
+              v-model="password"
+              type="password"
+              :placeholder="$t('password')"
+              required
           />
 
           <p v-if="errorMsg" class="error-msg">{{ errorMsg }}</p>
@@ -167,6 +170,11 @@ button {
   transform: translateY(-2px);
 }
 
+.lang-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+}
 
 @media (max-width: 550px) {
   .container {

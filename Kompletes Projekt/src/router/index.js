@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/loginView.vue'
 import HomeView from '../views/homeView.vue';
-import TopPostsView  from '../views/topPostsView.vue';
+import TopPostsView  from '@/views/topPostsView.vue';
 import AddPostView from '@/views/addPostView.vue';
 import ProfileView from "@/views/profileView.vue";
 import browseView from "@/views/browseView.vue";
 import RegistrationView from "@/views/registrationView.vue";
+import AdminDashboardView from "@/views/adminDashboardView.vue";
 import editProfileView from "@/views/editProfileView.vue";
-
 
 const routes = [
     {
@@ -51,12 +51,15 @@ const routes = [
         component: RegistrationView
     },
     {
-        path: '/editProfileView',
+        path: '/admin/dashboard',
+        name: 'adminDashboard',
+        component: AdminDashboardView
+    },
+    {
+        path: '/profile/editProfile',
         name: 'editProfile',
         component: editProfileView
-    }
-
-
+    },
 
 ]
 
