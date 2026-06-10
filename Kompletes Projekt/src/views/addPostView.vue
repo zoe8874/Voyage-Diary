@@ -109,7 +109,7 @@ async function submitPost() {
         <textarea v-model="content" :placeholder="$t('enterDescription')" id="content" required></textarea>
 
         <p v-if="errorMsg" style="color:red">{{ errorMsg }}</p>
-        <hr>
+
 
         <button @click="submitPost" :disabled="loading || !formValid" class="addPostbtn">
           {{ loading ? '...' : $t('addPost') }}
@@ -132,5 +132,13 @@ h1 {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
+}
+
+#content{
+
+
+  font-family: Arial, sans-serif;
+
+  
 }
 </style>
