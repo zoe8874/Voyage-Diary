@@ -96,7 +96,7 @@ export default {
       </div>
 
       <div v-else class="edit-card">
-        <h1>Edit Profile</h1>
+        <h1>{{ $t('editProfile') }}</h1>
 
         <div class="avatar-preview">
           <img
@@ -110,7 +110,7 @@ export default {
         </div>
 
         <div class="field">
-          <label>Email</label>
+          <label>{{ $t('email') }}</label>
           <input
               v-model="email"
               type="email"
@@ -120,7 +120,7 @@ export default {
 
 
         <div class="field">
-          <label>Username</label>
+          <label>{{ $t('username') }}</label>
           <input
               v-model="username"
               type="text"
@@ -129,7 +129,7 @@ export default {
         </div>
 
         <div class="field">
-          <label>Display Name</label>
+          <label>{{ $t('displayName') }}</label>
           <input
               v-model="display_name"
               type="text"
@@ -138,7 +138,7 @@ export default {
         </div>
 
         <div class="field">
-          <label>Avatar</label>
+          <label>{{ $t('pfp') }}</label>
           <input
               type="file"
               id="image"
@@ -150,10 +150,14 @@ export default {
 
         <div class="buttons">
           <button class="cancel" @click="$router.back()">
-            Cancel
+
+            {{ $t('cancel') }}
+
           </button>
 
           <button
+
+              type="submit"
               class="save"
               @click="saveProfile"
               :disabled="saving"
