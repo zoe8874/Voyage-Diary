@@ -74,7 +74,13 @@
   "liked": "Mi piace",
   "noPostsYet": "Ancora nessun post – condividi la tua prima avventura!",
   "noLikedPosts": "Ancora nessun post con mi piace.",
-  "enterCountry": "Ingrese el país"
+  "enterCountry": "Ingrese el país",
+  "editProfile": "Modifica Profilo",
+  "email": "Email",
+  "username": "NomeUtente",
+  "displayName": "Nome Visualizzato",
+  "pfp": "ImmagineProfilo",
+  "cancel": "Annulla"
 }
 
 
