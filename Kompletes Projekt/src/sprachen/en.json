@@ -74,6 +74,11 @@
   "liked": "Liked",
   "noPostsYet": "No posts yet – share your first adventure!",
   "noLikedPosts": "No liked posts yet.",
-  "enterCountry": "Enter Country"
+  "editProfile": "Edit Profile",
+  "email": "Email",
+  "username": "Username",
+  "displayName": "Display name",
+  "pfp": "Profile Picture",
+  "cancel": "cancel"
 }
 
