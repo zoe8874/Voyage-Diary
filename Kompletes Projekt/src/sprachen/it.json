@@ -71,15 +71,11 @@
   "editProfile": "Modifica profilo",
   "joined": "Iscritto",
   "myPosts": "I miei post",
-  "liked": "Mi piace",
   "noPostsYet": "Ancora nessun post – condividi la tua prima avventura!",
   "noLikedPosts": "Ancora nessun post con mi piace.",
   "enterCountry": "Ingrese el país",
-  "editProfile": "Modifica Profilo",
-  "email": "Email",
-  "username": "NomeUtente",
   "displayName": "Nome Visualizzato",
-  "pfp": "ImmagineProfilo",
+  "pfp": "Immagine Profilo",
   "cancel": "Annulla"
 }
 
