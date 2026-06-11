@@ -45,7 +45,7 @@ export default {
       </div>
     </section>
 
-    <!-- Why Nomads Love Us -->
+    
     <section class="content-section">
       <div class="section-title">
         <h2>{{ $t('whyNomads') }}</h2>
@@ -77,7 +77,7 @@ export default {
       </div>
     </section>
 
-    <footer>© Team VoyageDiary 2026</footer>
+    
   </div>
 </template>
 
@@ -92,7 +92,7 @@ export default {
 
 .hero {
   background: linear-gradient(135deg, #E5E3FF, #ffffff);
-  color: white;
+  color: rgb(84, 84, 84);
   padding: 80px 20px;
 }
 
