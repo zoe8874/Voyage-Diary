@@ -71,9 +71,13 @@
   "editProfile": "Editar perfil",
   "joined": "Unido",
   "myPosts": "Mis publicaciones",
+  "liked": "Me gusta",
   "noPostsYet": "Sin publicaciones aún – ¡comparte tu primera aventura!",
   "noLikedPosts": "Sin publicaciones con me gusta aún.",
   "enterCountry": "Ingrese el país",
+  "editProfile": "Editar perfil",
+  "email": "Correo electrónico",
+  "username": "Nombre de usuario",
   "displayName": "Nombre para mostrar",
   "pfp": "Foto de perfil",
   "cancel": "Cancelar"

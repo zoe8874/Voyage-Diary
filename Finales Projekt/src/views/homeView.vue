@@ -45,7 +45,7 @@ export default {
       </div>
     </section>
 
-    
+
     <section class="content-section">
       <div class="section-title">
         <h2>{{ $t('whyNomads') }}</h2>
@@ -77,7 +77,7 @@ export default {
       </div>
     </section>
 
-    
+
   </div>
 </template>
 
