@@ -122,14 +122,6 @@ export default {
 
 
 
-
-
-
-
-
-
-
-
 .stats-wrapper {
   margin-top: -40px;
   padding: 0 20px;
@@ -162,10 +154,6 @@ export default {
 
 
 
-
-
-
-
 .content-section {
   padding: 80px 20px;
 }
@@ -185,9 +173,6 @@ export default {
   max-width: 650px;
   margin: auto;
 }
-
-
-
 
 
 
@@ -215,8 +200,6 @@ export default {
 .info-card h3 {
   margin-bottom: 10px;
 }
-
-
 
 
 

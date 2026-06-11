@@ -90,8 +90,8 @@ async function submitPost() {
     <div class="content">
       <div class="container">
         <h1>{{ $t('addPost') }}</h1>
-        <p>{{ $t('pleaseAddPost') }}</p>
-        <hr>
+
+
 
         <label for="title"><b>{{ $t('title') }}</b></label>
         <input v-model="title" type="text" :placeholder="$t('enterTitle')" id="title" required>
@@ -126,6 +126,11 @@ async function submitPost() {
 
 h1 {
   color: var(--heading-color);
+  margin-bottom:2%;
+}
+b{
+  font-weight: lighter;
+  margin-bottom:2%;
 }
 
 .addPostbtn:disabled {
@@ -133,12 +138,18 @@ h1 {
   cursor: not-allowed;
   transform: none;
 }
-
+input{
+  margin-top: 1%;
+}
 #content{
 
 
   font-family: Arial, sans-serif;
 
 
+}
+
+textarea{
+  margin-top: 1%;
 }
 </style>
