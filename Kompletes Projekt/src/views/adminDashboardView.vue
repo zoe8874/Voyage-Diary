@@ -90,7 +90,7 @@ export default {
       <button :class="['nav-btn', activeTab === 'posts' ? 'active' : '']" @click="activeTab = 'posts'">
         Posts ({{ posts.length }})
       </button>
-      <button class="logout-btn" @click="logout">Ausloggen</button>
+      <button class="nav-btn" @click="logout">Ausloggen</button>
     </div>
 
     <div class="content">
@@ -197,23 +197,6 @@ export default {
   background: #0f3460;
   color: #ffffff;
   border-color: #0f3460;
-}
-
-.logout-btn {
-  margin-top: auto;
-  padding: 14px;
-  border-radius: 14px;
-  border: none;
-  background: #e94560;
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: background 0.2s ease;
-}
-
-.logout-btn:hover {
-  background: #c73652;
 }
 
 .content {
