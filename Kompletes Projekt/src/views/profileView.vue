@@ -135,7 +135,7 @@ export default {
                 <p class="post-content">{{ truncate(post.content) }}</p>
                 <div class="post-footer">
                   <span v-if="post.location">{{ post.location }}</span>
-                  <span>❤ {{ getLikeCount(post) }}</span>
+                  <span>❤{{ getLikeCount(post) }}</span>
                   <span>{{ formatDate(post.created_at) }}</span>
                 </div>
               </div>
@@ -159,7 +159,7 @@ export default {
                 <p class="post-content">{{ truncate(post?.content) }}</p>
                 <div class="post-footer">
                   <span v-if="post?.location">{{ post.location }}</span>
-                  <span>❤ {{ getLikeCount(post) }}</span>
+                  <span>❤{{ getLikeCount(post) }}</span>
                   <span>{{ formatDate(post?.created_at) }}</span>
                 </div>
               </div>
