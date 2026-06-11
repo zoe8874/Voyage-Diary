@@ -48,6 +48,29 @@ export default {
       this.loading = false
     },
 
+    async onImageChange(e) {
+      const file = e.target.files[0]
+      if (!file) return
+
+      const fileExt = file.name.split('.').pop()
+      const fileName = `${this.user.id}.${fileExt}`
+
+      const { error: uploadError } = await supabase.storage
+          .from('avatar')
+          .upload(fileName, file, { upsert: true })
+
+      if (uploadError) {
+        alert(uploadError.message)
+        return
+      }
+
+      const { data: urlData } = supabase.storage
+          .from('avatar')
+          .getPublicUrl(fileName)
+
+      this.avatar_url = urlData.publicUrl
+    },
+
     async saveProfile() {
       this.saving = true
 
@@ -56,7 +79,6 @@ export default {
           const { error: authError } = await supabase.auth.updateUser({
             email: this.email
           })
-
           if (authError) throw authError
         }
 
@@ -88,7 +110,7 @@ export default {
 
 <template>
   <div>
-    <NavigationBar />
+    <NavigationBar/>
 
     <div class="page">
       <div v-if="loading" class="loading">
@@ -99,11 +121,7 @@ export default {
         <h1>{{ $t('editProfile') }}</h1>
 
         <div class="avatar-preview">
-          <img
-              v-if="avatar_url"
-              :src="avatar_url"
-              class="avatar"
-          />
+          <img v-if="avatar_url" :src="avatar_url" class="avatar"/>
           <div v-else class="avatar-placeholder">
             {{ (display_name || username || '?')[0].toUpperCase() }}
           </div>
@@ -111,58 +129,28 @@ export default {
 
         <div class="field">
           <label>{{ $t('email') }}</label>
-          <input
-              v-model="email"
-              type="email"
-              placeholder="example@email.com"
-          />
+          <input v-model="email" type="email" placeholder="example@email.com"/>
         </div>
-
 
         <div class="field">
           <label>{{ $t('username') }}</label>
-          <input
-              v-model="username"
-              type="text"
-              placeholder="Username"
-          />
+          <input v-model="username" type="text" placeholder="Username"/>
         </div>
 
         <div class="field">
           <label>{{ $t('displayName') }}</label>
-          <input
-              v-model="display_name"
-              type="text"
-              placeholder="Display name"
-          />
+          <input v-model="display_name" type="text" placeholder="Display name"/>
         </div>
 
         <div class="field">
           <label>{{ $t('pfp') }}</label>
-          <input
-              type="file"
-              id="image"
-              accept="image/*"
-              @change="onImageChange"
-
-          />
+          <input type="file" id="image" accept="image/*" @change="onImageChange"/>
         </div>
 
         <div class="buttons">
-          <button class="cancel" @click="$router.back()">
-
-            {{ $t('cancel') }}
-
-          </button>
-
-          <button
-
-              type="submit"
-              class="save"
-              @click="saveProfile"
-              :disabled="saving"
-          >
-            {{ saving ? 'Saving...' : 'Save' }}
+          <button class="cancel" @click="$router.back()">{{ $t('cancel') }}</button>
+          <button type="submit" class="save" @click="saveProfile" :disabled="saving">
+            {{ saving ? $t('saving') : $t('save') }}
           </button>
         </div>
       </div>
@@ -171,7 +159,6 @@ export default {
 </template>
 
 <style scoped>
-
 .page {
   min-height: 100vh;
   background: var(--bg-gradient);
@@ -252,16 +239,6 @@ input {
   transition: 0.2s;
 }
 
-dark_light {
-
-  background: var(--input-bg);
-  border: var(--input-border);
-  border-radius: 14px;
-  font-size: 14px;
-  color: var(--text-primary);
-
-  margin-top: 28px;
-}
 input:focus {
   border-color: var(--heading-color);
   box-shadow: 0 0 0 3px rgba(115, 118, 255, 0.2);
@@ -274,8 +251,7 @@ input:focus {
   margin-top: 28px;
 }
 
-.cancel,
-.save {
+.cancel, .save {
   border: none;
   padding: 12px 24px;
   border-radius: 40px;
@@ -313,99 +289,35 @@ input:focus {
 }
 
 @media (max-width: 550px) {
-  .edit-card {
-    padding: 24px 20px;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-
-  .buttons {
-    flex-direction: column;
-  }
-
-  .cancel,
-  .save {
-    width: 100%;
-    text-align: center;
-  }
+  .edit-card { padding: 24px 20px; }
+  h1 { font-size: 24px; }
+  .buttons { flex-direction: column; }
+  .cancel, .save { width: 100%; text-align: center; }
 }
 
 @media (max-width: 400px) {
-  .edit-card {
-    padding: 20px 16px;
-  }
+  .edit-card { padding: 20px 16px; }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .edit-card {
-    max-width: 720px;
-    padding: 48px;
-  }
-
-  h1 {
-    font-size: 36px;
-    margin-bottom: 40px;
-  }
-
-  .avatar {
-    width: 140px;
-    height: 140px;
-  }
-
-  .avatar-placeholder {
-    width: 140px;
-    height: 140px;
-    font-size: 56px;
-  }
-
-  .field {
-    margin-bottom: 28px;
-  }
-
-  label {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  input {
-    padding: 16px 20px;
-    font-size: 18px;
-    border-radius: 16px;
-  }
-
-  .buttons {
-    gap: 20px;
-    margin-top: 40px;
-  }
-
-  .cancel,
-  .save {
-    padding: 16px 32px;
-    font-size: 18px;
-  }
+  .edit-card { max-width: 720px; padding: 48px; }
+  h1 { font-size: 36px; margin-bottom: 40px; }
+  .avatar, .avatar-placeholder { width: 140px; height: 140px; }
+  .avatar-placeholder { font-size: 56px; }
+  .field { margin-bottom: 28px; }
+  label { font-size: 16px; margin-bottom: 10px; }
+  input { padding: 16px 20px; font-size: 18px; border-radius: 16px; }
+  .buttons { gap: 20px; margin-top: 40px; }
+  .cancel, .save { padding: 16px 32px; font-size: 18px; }
 }
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-  .edit-card {
-    max-width: 780px;
-    padding: 52px;
-  }
+  .edit-card { max-width: 780px; padding: 52px; }
 }
 
 @media (max-width: 767px) {
-  .edit-card {
-    max-width: 100%;
-    padding: 24px 20px;
-  }
-
-  h1 {
-    font-size: 26px;
-  }
-
-  input {
-    font-size: 16px;
-  }
+  .edit-card { max-width: 100%; padding: 24px 20px; }
+  h1 { font-size: 26px; }
+  input { font-size: 16px; }
 }
 </style>

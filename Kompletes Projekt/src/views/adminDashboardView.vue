@@ -1,323 +1,289 @@
 <script>
-import NavigationBar from "@/components/navigationBar.vue"
 import supabase from "@/supabase"
 
 export default {
-  components: { NavigationBar },
-
   data() {
     return {
-      user: null,
-      email: '',
-      username: '',
-      display_name: '',
-      avatar_url: '',
-      loading: true,
-      saving: false
+      users: [],
+      posts: [],
+      activeTab: 'users',
+      loading: true
     }
   },
-
   async mounted() {
-    await this.loadProfile()
+    await this.checkAdmin()
+    await this.loadData()
   },
-
   methods: {
-    async loadProfile() {
+    async checkAdmin() {
       const { data: { user } } = await supabase.auth.getUser()
-
-      if (!user) {
-        this.$router.push('/login')
+      if (user === null) {
+        this.$router.push('/admin')
         return
       }
 
-      this.user = user
-
       const { data: profile } = await supabase
-          .from('users')
-          .select('*')
-          .eq('user_id', user.id)
-          .single()
+          .from('users').select('is_admin').eq('user_id', user.id).single()
 
-      if (profile) {
-        this.email = profile.email || ''
-        this.username = profile.username || ''
-        this.display_name = profile.display_name || ''
-        this.avatar_url = profile.avatar_url || ''
+      if (profile?.is_admin === false) {
+        this.$router.push('/admin')
       }
+    },
 
+    async loadData() {
+      const { data: users } = await supabase
+          .from('users').select('*').order('created_at', { ascending: false })
+      this.users = users || []
+
+      const { data: posts } = await supabase
+          .from('posts')
+          .select('post_id, content, image_url, location, created_at, users(username)')
+          .order('created_at', { ascending: false })
+      this.posts = posts || []
       this.loading = false
     },
 
-    async onImageChange(e) {
-      const file = e.target.files[0]
-      if (!file) return
-
-      const fileExt = file.name.split('.').pop()
-      const fileName = `${this.user.id}.${fileExt}`
-
-      const { error: uploadError } = await supabase.storage
-          .from('avatar')
-          .upload(fileName, file, { upsert: true })
-
-      if (uploadError) {
-        alert(uploadError.message)
+    async deleteUser(user_id) {
+      const bestaetigt = confirm('User wirklich löschen?')
+      if (bestaetigt === false) {
         return
       }
-
-      const { data: urlData } = supabase.storage
-          .from('avatar')
-          .getPublicUrl(fileName)
-
-      this.avatar_url = urlData.publicUrl
+      await supabase.from('users').delete().eq('user_id', user_id)
+      this.users = this.users.filter(u => u.user_id !== user_id)
     },
 
-    async saveProfile() {
-      this.saving = true
-
-      try {
-        if (this.email !== this.user.email) {
-          const { error: authError } = await supabase.auth.updateUser({
-            email: this.email
-          })
-          if (authError) throw authError
-        }
-
-        const { error: profileError } = await supabase
-            .from('users')
-            .update({
-              email: this.email,
-              username: this.username,
-              display_name: this.display_name,
-              avatar_url: this.avatar_url
-            })
-            .eq('user_id', this.user.id)
-
-        if (profileError) throw profileError
-
-        alert('Profil gespeichert!')
-        this.$router.push('/profile')
-
-      } catch (error) {
-        console.error(error)
-        alert(error.message || 'Fehler beim Speichern')
+    async deletePost(post_id) {
+      const bestaetigt = confirm('Post wirklich löschen?')
+      if (bestaetigt === false) {
+        return
       }
+      await supabase.from('posts').delete().eq('post_id', post_id)
+      this.posts = this.posts.filter(p => p.post_id !== post_id)
+    },
 
-      this.saving = false
+    async logout() {
+      await supabase.auth.signOut()
+      this.$router.push('/topPosts')
+    },
+
+    formatDate(datum) {
+      return new Date(datum).toLocaleDateString('de-CH')
+    },
+
+    truncate(text, maxLaenge = 80) {
+      if (text?.length > maxLaenge) {
+        return text.slice(0, maxLaenge) + '...'
+      }
+      return text
     }
   }
 }
 </script>
 
 <template>
-  <div>
-    <NavigationBar/>
+  <div class="admin">
+    <div class="sidebar">
+      <h2>Admin</h2>
+      <button :class="['nav-btn', activeTab === 'users' ? 'active' : '']" @click="activeTab = 'users'">
+        Users ({{ users.length }})
+      </button>
+      <button :class="['nav-btn', activeTab === 'posts' ? 'active' : '']" @click="activeTab = 'posts'">
+        Posts ({{ posts.length }})
+      </button>
+      <button class="nav-btn" @click="logout">Ausloggen</button>
+    </div>
 
-    <div class="page">
-      <div v-if="loading" class="loading">
-        Loading...
+    <div class="content">
+      <div v-if="loading">Loading...</div>
+
+      <div v-else-if="activeTab === 'users'">
+        <h2>Users</h2>
+        <table>
+          <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Admin</th>
+            <th>Erstellt</th>
+            <th>Aktion</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="user in users" :key="user.user_id">
+            <td>@{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.is_admin ? 'Ja' : 'Nein' }}</td>
+            <td>{{ formatDate(user.created_at) }}</td>
+            <td>
+              <button v-if="user.is_admin === false" class="delete-btn" @click="deleteUser(user.user_id)">
+                Löschen
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
 
-      <div v-else class="edit-card">
-        <h1>{{ $t('editProfile') }}</h1>
-
-        <div class="avatar-preview">
-          <img v-if="avatar_url" :src="avatar_url" class="avatar"/>
-          <div v-else class="avatar-placeholder">
-            {{ (display_name || username || '?')[0].toUpperCase() }}
-          </div>
-        </div>
-
-        <div class="field">
-          <label>{{ $t('email') }}</label>
-          <input v-model="email" type="email" placeholder="example@email.com"/>
-        </div>
-
-        <div class="field">
-          <label>{{ $t('username') }}</label>
-          <input v-model="username" type="text" placeholder="Username"/>
-        </div>
-
-        <div class="field">
-          <label>{{ $t('displayName') }}</label>
-          <input v-model="display_name" type="text" placeholder="Display name"/>
-        </div>
-
-        <div class="field">
-          <label>{{ $t('pfp') }}</label>
-          <input type="file" id="image" accept="image/*" @change="onImageChange"/>
-        </div>
-
-        <div class="buttons">
-          <button class="cancel" @click="$router.back()">{{ $t('cancel') }}</button>
-          <button type="submit" class="save" @click="saveProfile" :disabled="saving">
-            {{ saving ? $t('saving') : $t('save') }}
-          </button>
-        </div>
+      <div v-else-if="activeTab === 'posts'">
+        <h2>Posts</h2>
+        <table>
+          <thead>
+          <tr>
+            <th>User</th>
+            <th>Inhalt</th>
+            <th>Ort</th>
+            <th>Datum</th>
+            <th>Aktion</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="post in posts" :key="post.post_id">
+            <td>@{{ post.users?.username }}</td>
+            <td>{{ truncate(post.content) }}</td>
+            <td>{{ post.location || '—' }}</td>
+            <td>{{ formatDate(post.created_at) }}</td>
+            <td>
+              <button class="delete-btn" @click="deletePost(post.post_id)">Löschen</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.page {
-  min-height: 100vh;
-  background: var(--bg-gradient);
-  padding: 32px 16px 100px;
+.admin {
   display: flex;
-  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  background: #1a1a2e;
+  color: #e2e8f0;
+}
+
+.sidebar {
+  width: 240px;
+  background: #16213e;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-right: 1px solid #0f3460;
+}
+
+.sidebar h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 32px;
+  letter-spacing: 0.5px;
+}
+
+.nav-btn {
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-btn.active, .nav-btn:hover {
+  background: #0f3460;
+  color: #ffffff;
+  border-color: #0f3460;
+}
+
+.content {
+  flex: 1;
+  padding: 50px;
+  max-width: 1200px;
+}
+
+.content h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 32px;
 }
 
 .loading {
-  text-align: center;
-  padding: 40px;
-  color: var(--text-secondary);
+  font-size: 16px;
+  color: #94a3b8;
 }
 
-.edit-card {
+table {
   width: 100%;
-  max-width: 520px;
-  background: var(--card-bg);
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: var(--shadow-sm);
-  border: var(--container-border);
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #16213e;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  border: 1px solid #0f3460;
 }
 
-h1 {
-  margin-bottom: 28px;
-  font-size: 28px;
-  color: var(--heading-color);
-  text-align: center;
+th {
+  background: #0f3460;
+  color: #ffffff;
+  padding: 18px 24px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.avatar-preview {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-.avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--heading-color);
-}
-
-.avatar-placeholder {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: var(--heading-color);
-  color: white;
-  font-size: 38px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.field {
-  margin-bottom: 18px;
-}
-
-label {
-  display: block;
-  margin-bottom: 6px;
+td {
+  padding: 18px 24px;
+  border-bottom: 1px solid #0f3460;
   font-size: 14px;
-  color: var(--text-secondary);
+  color: #cbd5e1;
 }
 
-input {
-  width: 100%;
-  padding: 12px 14px;
-  background: var(--input-bg);
-  border: var(--input-border);
-  border-radius: 14px;
-  font-size: 14px;
-  color: var(--text-primary);
-  outline: none;
-  transition: 0.2s;
+tr:last-child td {
+  border-bottom: none;
 }
 
-input:focus {
-  border-color: var(--heading-color);
-  box-shadow: 0 0 0 3px rgba(115, 118, 255, 0.2);
+tr:hover td {
+  background: rgba(15, 52, 96, 0.3);
 }
 
-.buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.cancel, .save {
-  border: none;
-  padding: 12px 24px;
-  border-radius: 40px;
-  cursor: pointer;
+.delete-btn {
+  background: rgba(233, 69, 96, 0.1);
+  color: #e94560;
+  border: 1px solid rgba(233, 69, 96, 0.2);
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
   font-weight: 600;
-  font-size: 14px;
-  transition: 0.2s;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.cancel {
-  background: transparent;
-  border: 1.5px solid var(--text-secondary);
-  color: var(--text-secondary);
+.delete-btn:hover {
+  background: #e94560;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.2);
 }
 
-.cancel:hover {
-  background: var(--text-secondary);
-  color: white;
-}
-
-.save {
-  background: var(--btn-gradient);
-  color: white;
-}
-
-.save:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.02);
-}
-
-.save:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-@media (max-width: 550px) {
-  .edit-card { padding: 24px 20px; }
-  h1 { font-size: 24px; }
-  .buttons { flex-direction: column; }
-  .cancel, .save { width: 100%; text-align: center; }
-}
-
-@media (max-width: 400px) {
-  .edit-card { padding: 20px 16px; }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .edit-card { max-width: 720px; padding: 48px; }
-  h1 { font-size: 36px; margin-bottom: 40px; }
-  .avatar, .avatar-placeholder { width: 140px; height: 140px; }
-  .avatar-placeholder { font-size: 56px; }
-  .field { margin-bottom: 28px; }
-  label { font-size: 16px; margin-bottom: 10px; }
-  input { padding: 16px 20px; font-size: 18px; border-radius: 16px; }
-  .buttons { gap: 20px; margin-top: 40px; }
-  .cancel, .save { padding: 16px 32px; font-size: 18px; }
-}
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-  .edit-card { max-width: 780px; padding: 52px; }
-}
-
-@media (max-width: 767px) {
-  .edit-card { max-width: 100%; padding: 24px 20px; }
-  h1 { font-size: 26px; }
-  input { font-size: 16px; }
+@media (max-width: 900px) {
+  .admin {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #0f3460;
+    box-sizing: border-box;
+  }
+  .content {
+    padding: 24px;
+  }
 }
 </style>
