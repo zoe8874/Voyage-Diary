@@ -63,7 +63,7 @@ export default {
 
     async logout() {
       await supabase.auth.signOut()
-      this.$router.push('/admin')
+      this.$router.push('/topPosts')
     },
 
     formatDate(datum) {
