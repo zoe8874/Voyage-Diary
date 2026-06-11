@@ -127,6 +127,10 @@ export default {
 
     uniqueLanguages() {
       return [...new Set(this.posts.map(p => p.language).filter(Boolean))]
+    },
+    truncate(text, len = 100) {
+      if (!text) return ''
+      return text.length > len ? text.slice(0, len) + '...' : text
     }
   }
 }
@@ -161,7 +165,7 @@ export default {
       </div>
 
       <div v-else class="posts-list">
-        <div v-for="post in filteredPosts" :key="post.post_id" class="post-card">
+        <div v-for="post in filteredPosts" :key="post.post_id" class="post-card" @click="openPost(post)">
           <img v-if="post.image_url" :src="post.image_url" class="post-image"/>
 
           <div class="post-author">
@@ -172,8 +176,7 @@ export default {
             </div>
             <span class="lang-badge">{{ post.language }}</span>
           </div>
-
-          <p class="post-content">{{ post.content }}</p>
+          <p class="post-content">{{ truncate(post.content) }}</p>
 
           <div class="post-meta">
             <span v-if="post.location">{{ post.location }}, {{ post.country }}</span>
@@ -332,7 +335,7 @@ h1 {
   gap: 24px;
   max-width: 1100px;
   margin: 0 auto;
-  
+
 }
 
 .post-card {
@@ -342,6 +345,7 @@ h1 {
   border: var(--container-border);
   box-shadow: var(--shadow-sm);
   transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
 }
 
 .post-card:hover {
@@ -396,6 +400,8 @@ h1 {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text-primary);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .post-meta {

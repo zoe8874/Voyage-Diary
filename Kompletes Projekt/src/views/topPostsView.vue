@@ -96,6 +96,10 @@ export default {
 
     getLikeCount(post) {
       return post.likes?.length || 0
+    },
+    truncate(text, len = 100) {
+      if (!text) return ''
+      return text.length > len ? text.slice(0, len) + '...' : text
     }
   }
 }
@@ -125,7 +129,7 @@ export default {
       <div v-if="loading">{{ $t('loading') }}</div>
 
       <div v-else>
-        <div v-for="(post, index) in posts" :key="post.post_id" class="post-card">
+        <div v-for="(post, index) in posts" :key="post.post_id" class="post-card" @click="openPost(post)">
           <span class="rank">{{ index + 1 }}</span>
 
           <img v-if="post.image_url" :src="post.image_url" :alt="post.content" class="post-image"/>
@@ -139,8 +143,7 @@ export default {
               </div>
               <span class="language">{{ post.language }}</span>
             </div>
-
-            <p class="content">{{ post.content }}</p>
+            <p class="content">{{ truncate(post.content) }}</p>
 
             <div class="location" v-if="post.location">
               {{ post.location }}, {{ post.country }}
@@ -274,6 +277,7 @@ export default {
   box-shadow: var(--shadow-sm);
   border: var(--container-border);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
 }
 
 .post-card:hover {
@@ -354,6 +358,8 @@ export default {
   line-height: 1.7;
   color: var(--text-primary);
   margin-bottom: 18px;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .location {
@@ -542,4 +548,3 @@ h3 { font-size: 1rem; color: var(--text-primary); margin: 0; }
 
 
 </style>
-
