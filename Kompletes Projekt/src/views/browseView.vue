@@ -332,7 +332,7 @@ h1 {
   gap: 24px;
   max-width: 1100px;
   margin: 0 auto;
-  //width: 100%;
+  
 }
 
 .post-card {
