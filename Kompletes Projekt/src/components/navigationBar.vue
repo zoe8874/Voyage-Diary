@@ -177,7 +177,7 @@ export default {
 .mobile-dropdown {
   position: fixed;
   top: 70px;
-  right: 16px;
+  right: 175px;
   background: var(--card-bg);
   border-radius: 20px;
   padding: 12px;
