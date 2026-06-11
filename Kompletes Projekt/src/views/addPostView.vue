@@ -152,4 +152,25 @@ input{
 textarea{
   margin-top: 1%;
 }
+
+/*
+
+!!! ICH BIN HIER DRAN - NICHT LOESCHEN !!!
+
+input[type="file"] {
+  display: none;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+
+
+.custom-file-upload {
+
+
+}*/
+
+
 </style>
