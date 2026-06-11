@@ -78,7 +78,7 @@ export default {
 
 <style scoped>
 .page {
-  height: 0vh;
+  height: 100vh;
   background: var(--bg-gradient);
   display: flex;
   align-items: center;
@@ -92,7 +92,7 @@ export default {
   width: 100%;
   background: var(--container-bg);
   backdrop-filter: blur(10px);
-  padding: 40px;
+  padding: 40px 32px;
   border-radius: 32px;
   box-shadow: var(--shadow-sm);
   border: var(--container-border);
@@ -222,3 +222,9 @@ button {
   input { padding: 12px 14px; }
 }
 </style>
+
+
+
+
+
+

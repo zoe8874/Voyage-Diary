@@ -15,6 +15,7 @@ const image = ref(null)
 const errorMsg = ref('')
 const loading = ref(false)
 
+// Formularvalidierung prüft, ob alle Pflichtfelder ausgefüllt wurden.
 const formValid = computed(() => {
   return title.value.trim() !== '' &&
       destination.value.trim() !== '' &&
@@ -22,16 +23,20 @@ const formValid = computed(() => {
       content.value.trim() !== ''
 })
 
+// Speichert das ausgewählte Bild aus dem Datei-Input.
 function onImageChange(e) {
   image.value = e.target.files[0]
 }
 
+
+//Erstellt neueun Beitrag
 async function submitPost() {
   errorMsg.value = ''
   loading.value = true
 
   const { data: { user } } = await supabase.auth.getUser()
 
+  //Prueft ob User eingeloggt ist
   if (!user) {
     errorMsg.value = 'Du bist nicht eingeloggt'
     loading.value = false
@@ -40,10 +45,12 @@ async function submitPost() {
 
   let image_url = null
 
+  //Erstellt einen eindeutigen Dateinamen für das hochgeladene Bild.
   if (image.value) {
     const fileExt = image.value.name.split('.').pop()
     const fileName = `${user.id}_${Date.now()}.${fileExt}`
 
+    //Lädt das Bild in den Supabase Storage hoch.
     const { error: uploadError } = await supabase.storage
         .from('post-images')
         .upload(fileName, image.value)
@@ -61,6 +68,7 @@ async function submitPost() {
     image_url = urlData.publicUrl
   }
 
+  //Findet heraus welche sprachoption der user eingestellt hat
   const langCode = franc(content.value)
   const sprachCodes = { 'deu': 'de', 'eng': 'en', 'fra': 'fr', 'ita': 'it', 'spa': 'es' }
   const language = sprachCodes[langCode] || 'de'
@@ -80,6 +88,7 @@ async function submitPost() {
     return
   }
 
+  //Leitet User zu topposts weiter
   router.push('/topPosts')
 }
 </script>
@@ -93,6 +102,10 @@ async function submitPost() {
 
 
 
+        <!-- Comment
+        formular fuer das posten
+
+        -->
         <label for="title"><b>{{ $t('title') }}</b></label>
         <input v-model="title" type="text" :placeholder="$t('enterTitle')" id="title" required>
 

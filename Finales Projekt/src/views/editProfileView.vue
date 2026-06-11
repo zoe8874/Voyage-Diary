@@ -17,27 +17,39 @@ export default {
     }
   },
 
+
+  //Lädt die Profildaten direkt nach dem Öffnen der Seite.
   async mounted() {
     await this.loadProfile()
   },
 
+
+  //Ruft den aktuell angemeldeten Benutzer ab.
   methods: {
     async loadProfile() {
       const { data: { user } } = await supabase.auth.getUser()
 
+      //Leitet nicht angemeldete Benutzer zur Login-Seite weiter.
       if (!user) {
         this.$router.push('/login')
         return
       }
 
+
       this.user = user
 
+
+      //Lädt die gespeicherten Profildaten aus der Datenbank.
       const { data: profile } = await supabase
           .from('users')
           .select('*')
           .eq('user_id', user.id)
           .single()
 
+
+
+
+      //Überträgt vorhandene Profildaten in die Formularfelder
       if (profile) {
         this.email = profile.email || ''
         this.username = profile.username || ''
@@ -48,10 +60,15 @@ export default {
       this.loading = false
     },
 
+
+
     async onImageChange(e) {
       const file = e.target.files[0]
       if (!file) return
 
+
+
+      //Erstellt einen eindeutigen Dateinamen für das Profilbild.
       const fileExt = file.name.split('.').pop()
       const fileName = `${this.user.id}.${fileExt}`
 
@@ -64,6 +81,8 @@ export default {
         return
       }
 
+
+
       const { data: urlData } = supabase.storage
           .from('avatar')
           .getPublicUrl(fileName)
@@ -71,9 +90,12 @@ export default {
       this.avatar_url = urlData.publicUrl
     },
 
+
+
     async saveProfile() {
       this.saving = true
 
+      //Aktualisiert die E-Mail-Adresse im Authentifizierungssystem, falls sie geändert wurde.
       try {
         if (this.email !== this.user.email) {
           const { error: authError } = await supabase.auth.updateUser({
@@ -81,6 +103,8 @@ export default {
           })
           if (authError) throw authError
         }
+
+
 
         const { error: profileError } = await supabase
             .from('users')
@@ -94,9 +118,14 @@ export default {
 
         if (profileError) throw profileError
 
+
+
+        //Zeigt eine Erfolgsmeldung an und leitet zurück zum Profil.
         alert('Profil gespeichert!')
         this.$router.push('/profile')
 
+
+        //Zeigr eine Fehlschlagmeldung an und leitet zurueck zum rpofil.
       } catch (error) {
         console.error(error)
         alert(error.message || 'Fehler beim Speichern')

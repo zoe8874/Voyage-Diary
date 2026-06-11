@@ -4,6 +4,8 @@ import LanguageButtons from "@/components/languageButtons.vue";
 export default {
   components: { LanguageButtons },
 
+
+  //Navigiert den Benutzer zur Login-Seite.
   methods: {
     navigateToLoginView() {
       this.$router.push("/login");
@@ -27,6 +29,8 @@ export default {
       </div>
     </section>
 
+
+    <!-- Zeigt alles statische informationen auf -->
 
     <section class="stats-wrapper">
       <div class="stats-card">
@@ -67,6 +71,8 @@ export default {
         </div>
       </div>
     </section>
+
+    <!-- buttons die zu LoginView fuehren -->
 
     <section class="cta-section">
       <h2>{{ $t('ctaTitle') }}</h2>

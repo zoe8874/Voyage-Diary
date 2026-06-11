@@ -12,19 +12,24 @@ export default {
     }
   },
   methods: {
-    navigateToRegistrationView() {
+    navigateToRegistrationView() { //Navigiert zur Registrierungsseite
       this.$router.push('/registration')
     },
-    async login() {
-      this.errorMsg = ''
+
+
+    async login() { //Startet den Login-Prozess.
+      this.errorMsg = '' //setzt errormessage zururck
       const { error } = await supabase.auth.signInWithPassword({
+
+        //Authentifiziert den Benutzer mit E-Mail und Passwort.
         email: this.email,
         password: this.password
       })
       if (error) {
-        this.errorMsg = error.message
+        this.errorMsg = error.message //Zeigt Fehlermeldungen bei fehlgeschlagener Anmeldung an.
         return
       }
+      //Leitet nach erfolgreicher Anmeldung zur Beitragsübersicht weiter.
       this.$router.push('/topPosts')
     }
   }
@@ -59,7 +64,7 @@ export default {
           <p v-if="errorMsg" class="error-msg">{{ errorMsg }}</p>
 
           <div class="button-group">
-            <button type="submit" class="btn-primary">{{ $t('login') }}</button>
+            <button type="submit" class="btn-primary">{{ $t('login') }}</button> <!-- Sendet login daten weiter -->
             <button type="button" class="btn-secondary" @click="navigateToRegistrationView">
               {{ $t('register') }}
             </button>
