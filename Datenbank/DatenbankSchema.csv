@@ -1,0 +1,62 @@
+table_name,column_name,data_type,is_nullable,column_default
+comments,comment_id,integer,NO,nextval('comments_comment_id_seq'::regclass)
+comments,user_id,uuid,YES,null
+comments,post_id,integer,YES,null
+comments,content,text,NO,null
+comments,language,text,YES,'de'::text
+comments,created_at,timestamp with time zone,YES,now()
+likes,like_id,integer,NO,nextval('likes_like_id_seq'::regclass)
+likes,user_id,uuid,YES,null
+likes,post_id,integer,YES,null
+likes,created_at,timestamp with time zone,YES,now()
+posts,post_id,integer,NO,nextval('posts_post_id_seq'::regclass)
+posts,user_id,uuid,YES,null
+posts,content,text,NO,null
+posts,image_url,text,YES,null
+posts,location,text,YES,null
+posts,country,text,YES,null
+posts,language,text,YES,'de'::text
+posts,created_at,timestamp with time zone,YES,now()
+users,user_id,uuid,NO,null
+users,instance_id,uuid,YES,null
+users,id,uuid,NO,null
+users,username,text,NO,null
+users,email,text,NO,null
+users,aud,character varying,YES,null
+users,display_name,text,YES,null
+users,role,character varying,YES,null
+users,email,character varying,YES,null
+users,bio,text,YES,null
+users,encrypted_password,character varying,YES,null
+users,avatar_url,text,YES,null
+users,email_confirmed_at,timestamp with time zone,YES,null
+users,is_admin,boolean,YES,false
+users,invited_at,timestamp with time zone,YES,null
+users,created_at,timestamp with time zone,YES,now()
+users,confirmation_token,character varying,YES,null
+users,confirmation_sent_at,timestamp with time zone,YES,null
+users,recovery_token,character varying,YES,null
+users,recovery_sent_at,timestamp with time zone,YES,null
+users,email_change_token_new,character varying,YES,null
+users,email_change,character varying,YES,null
+users,email_change_sent_at,timestamp with time zone,YES,null
+users,last_sign_in_at,timestamp with time zone,YES,null
+users,raw_app_meta_data,jsonb,YES,null
+users,raw_user_meta_data,jsonb,YES,null
+users,is_super_admin,boolean,YES,null
+users,created_at,timestamp with time zone,YES,null
+users,updated_at,timestamp with time zone,YES,null
+users,phone,text,YES,NULL::character varying
+users,phone_confirmed_at,timestamp with time zone,YES,null
+users,phone_change,text,YES,''::character varying
+users,phone_change_token,character varying,YES,''::character varying
+users,phone_change_sent_at,timestamp with time zone,YES,null
+users,confirmed_at,timestamp with time zone,YES,null
+users,email_change_token_current,character varying,YES,''::character varying
+users,email_change_confirm_status,smallint,YES,0
+users,banned_until,timestamp with time zone,YES,null
+users,reauthentication_token,character varying,YES,''::character varying
+users,reauthentication_sent_at,timestamp with time zone,YES,null
+users,is_sso_user,boolean,NO,false
+users,deleted_at,timestamp with time zone,YES,null
+users,is_anonymous,boolean,NO,false
