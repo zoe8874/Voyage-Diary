@@ -81,6 +81,19 @@
   "pfp": "Profile Picture",
   "cancel": "cancel",
   "country": "Country",
-  "enterCountry": "Enter a country"
+  "enterCountry": "Enter a country",
+  "jan": "January",
+  "feb": "February",
+  "mar": "March",
+  "apr": "April",
+  "mai": "May",
+  "jun": "June",
+  "jul": "July",
+  "aug": "August",
+  "sep": "September",
+  "oct": "October",
+  "nov": "November",
+  "dec": "December"
+
 }
 
