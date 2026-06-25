@@ -75,6 +75,25 @@ export default {
       this.filterCountry = ''
       this.filteredPosts = this.posts
     },
+    async toggledisLike(post) {
+      if (!this.currentUser) { this.$router.push('/login'); return }
+      const disliked = post.dislikes?.some(l => l.user_id === this.currentUser.id)
+      if (disliked) {
+        const { error } = await supabase.from('dislikes').delete().eq('user_id', this.currentUser.id).eq('post_id', post.post_id)
+        if (!error) post.dislikes = post.dislikes.filter(l => l.user_id !== this.currentUser.id)
+      } else {
+        const { error } = await supabase.from('dislikes').insert({ user_id: this.currentUser.id, post_id: post.post_id })
+        if (error && error.code === '23505') {
+          post.dislikes = [...(post.dislikes || []), { user_id: this.currentUser.id }]
+        } else if (!error) {
+          post.dislikes = [...(post.dislikes || []), { user_id: this.currentUser.id }]
+        }
+      }
+    },
+    isdisLiked(post) {
+      if (!this.currentUser) return false
+      return post.dislikes?.some(l => l.user_id === this.currentUser.id)
+    },
 
     async toggleLike(post) {
       if (!this.currentUser) { this.$router.push('/login'); return }
@@ -187,6 +206,11 @@ export default {
             <button :class="['action-btn', isLiked(post) ? 'liked' : '']" @click="toggleLike(post)">
               {{ isLiked(post) ? $t('liked') : $t('like') }} ({{ getLikeCount(post) }})
             </button>
+
+            <button :class="['action-btn', isdisLiked(post) ? 'disliked' : '']" @click="toggledisLike(post)">
+              {{ isdisLiked(post) ? $t('disliked') : $t('dislike') }} ({{ getLikeCount(post) }})
+            </button>
+
             <button class="action-btn" @click="openPost(post)">{{ $t('comments') }}</button>
           </div>
         </div>

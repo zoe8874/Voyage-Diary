@@ -27,7 +27,11 @@ export default {
     navigateTocreatePostView() { this.$router.push('/addPost'); this.mobileMenuOpen = false },
     navigateToprofileView() { this.$router.push('/profile'); this.mobileMenuOpen = false },
     navigateToAdminView() { this.$router.push('/admin/dashboard'); this.mobileMenuOpen = false },
-    toggleMobileMenu() { this.mobileMenuOpen = !this.mobileMenuOpen }
+    toggleMobileMenu() { this.mobileMenuOpen = !this.mobileMenuOpen },
+    async logout() {
+      await supabase.auth.signOut()
+      this.$router.push('/login')
+    }
   }
 }
 </script>
@@ -42,6 +46,7 @@ export default {
         <button @click="navigateTocreatePostView">{{ $t('createPost') }}</button>
         <button @click="navigateToprofileView">{{ $t('profile') }}</button>
         <button v-if="isAdmin" class="admin-btn" @click="navigateToAdminView">{{ $t('admin') }}</button>
+        <button class="logout-btn" @click="logout">{{ $t('logout') }}</button>
       </div>
       <span class="lang-divider"></span>
       <LanguageButtons/>
@@ -61,6 +66,7 @@ export default {
       <button @click="navigateTocreatePostView">{{ $t('createPost') }}</button>
       <button @click="navigateToprofileView">{{ $t('profile') }}</button>
       <button v-if="isAdmin" @click="navigateToAdminView">{{ $t('admin') }}</button>
+      <button class="logout-btn" @click="logout">{{ $t('logout') }}</button>
     </div>
   </div>
 </template>
@@ -130,6 +136,20 @@ export default {
 .admin-btn:hover {
   background: #f0f0f0 !important;
   color: #555 !important;
+  transform: none !important;
+}
+
+.logout-btn {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  border-radius: 8px;
+}
+
+.logout-btn:hover {
+  background: #ff6b6b !important;
+  color: white !important;
   transform: none !important;
 }
 
