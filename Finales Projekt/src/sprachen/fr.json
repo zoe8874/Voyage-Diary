@@ -80,6 +80,18 @@
   "username": "Nom d'utilisateur",
   "displayName": "Nom d'affichage",
   "pfp": "Photo de profil",
-  "cancel": "Annuler"
+  "cancel": "Annuler",
+  "jan": "January",
+  "feb": "February",
+  "mar": "March",
+  "apr": "April",
+  "mai": "May",
+  "jun": "June",
+  "jul": "July",
+  "aug": "August",
+  "sep": "September",
+  "oct": "October",
+  "nov": "November",
+  "dec": "December"
 }
 
