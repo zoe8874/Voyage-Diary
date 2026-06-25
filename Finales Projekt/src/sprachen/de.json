@@ -81,5 +81,17 @@
   "displayName": "Angezeigter Name",
   "pfp": "Profilbild",
   "cancel": "cancel",
-  "country": "Land"
+  "country": "Land",
+  "jan": "January",
+  "feb": "February",
+  "mar": "March",
+  "apr": "April",
+  "mai": "May",
+  "jun": "June",
+  "jul": "July",
+  "aug": "August",
+  "sep": "September",
+  "oct": "October",
+  "nov": "November",
+  "dec": "December"
 }
